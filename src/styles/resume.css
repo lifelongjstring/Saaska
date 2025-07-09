@@ -1,0 +1,497 @@
+/* ===== Base Styles ===== */
+body {
+  --sidebar-width: 220px;
+  --main-content-max-width: 85vw;
+  display: flex;
+  min-height: 100vh;
+  font-family: 'Jost', sans-serif;
+  margin: 0;
+  background: linear-gradient(to bottom, #003049, #0077b6, #00b4d8);
+  color: white;
+  position: relative;
+}
+
+/* ===== Sidebar Styles ===== */
+.sidebar {
+  width: var(--sidebar-width);
+  height: 100vh;
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 101;
+  padding: 40px 25px;
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  transition: all 0.3s ease;
+  overflow-y: auto;
+  border-right: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.sidebar.collapsed {
+  width: 70px;
+  padding: 40px 15px;
+}
+
+/* ===== Sidebar Header ===== */
+.sidebar-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 10px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  gap: 10px;
+}
+
+.sidebar-header h2 {
+  margin: 0;
+  font-size: 1.5rem;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+#toggleSidebar {
+  background-color: #ff9f1c;
+  border: none;
+  color: white;
+  cursor: pointer;
+  width: 24px;
+  height: 24px;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+  padding: 0;
+  flex-shrink: 0;
+  margin: 0;
+}
+
+#toggleSidebar i {
+  font-size: 0.7rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#toggleSidebar:hover {
+  background-color: #ffae3c;
+  transform: scale(1.05);
+}
+
+/* ===== Main Content Area ===== */
+.main-content {
+  margin-left: var(--sidebar-width);
+  padding: 40px 60px;
+  transition: all 0.3s ease;
+  min-height: 100vh;
+  width: 100%;
+  max-width: var(--main-content-max-width);
+  margin-right: auto;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+}
+
+.main-content.collapsed {
+  margin-left: 70px;
+  width: calc(100% - 70px);
+}
+
+/* ===== Footer ===== */
+footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px 50px;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 14px;
+  text-align: center;
+  backdrop-filter: blur(8px);
+  border-top: 1px solid rgba(255, 255, 255, 0.15);
+  position: fixed;
+  bottom: 0;
+  left: var(--sidebar-width);
+  right: 0;
+  height: 60px;
+  transition: all 0.3s ease;
+  z-index: 99;
+}
+
+.sidebar.collapsed ~ footer {
+  left: 70px;
+}
+
+/* Dashboard page footer positioning */
+.dashboard-page-wrapper footer {
+  left: 0;
+  right: 0;
+  width: 100%;
+}
+
+.footer-content {
+  max-width: 100%;
+  padding: 0 20px;
+}
+
+
+/* ===== Navigation Items ===== */
+.nav-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 15px;
+  margin: 5px 0;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+}
+
+.nav-item:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+/* ===== Sidebar Text Transition ===== */
+.nav-text {
+  display: block;
+  overflow: hidden;
+  white-space: nowrap;
+  transition: opacity 0.3s ease, max-width 0.3s ease, margin 0.3s ease;
+  opacity: 1;
+  max-width: 200px;
+  margin-left: 10px;
+}
+
+.sidebar.collapsed .nav-text {
+  opacity: 0;
+  max-width: 0;
+  margin-left: 0;
+}
+
+.sidebar.collapsed .nav-item {
+  justify-content: center;
+}
+
+.sidebar.collapsed h2.nav-text {
+  opacity: 0;
+  max-width: 0;
+  margin: 0;
+}
+
+/* ===== Resume Workspace Enhancements ===== */
+.section-title {
+  font-size: 1.8rem;
+  margin-bottom: 1.5rem;
+  font-weight: 600;
+}
+
+  
+  /* ===== Nuclear Option ===== */
+  /* If ALL else fails, switch to flexbox (like your prototype expects) */
+  .card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 35px;
+    margin-top: 20px;
+  }
+
+
+
+.card {
+  background: white;
+  border-radius: 12px;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  transition: transform 0.2s ease;
+  color: #333;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+}
+
+.card-title {
+  font-weight: 600;
+  font-size: 1.1rem;
+  margin-bottom: 0.5rem;
+}
+
+.card-meta {
+  font-size: 0.9rem;
+  color: #555;
+}
+
+.new-resume-card {
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: #666;
+  font-size: 1rem;
+  border: 2px dashed #ccc;
+  display: flex;
+  flex-direction: column;
+}
+
+.new-resume-card i {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+}
+
+/* ===== Responsive Adjustments ===== */
+@media (max-width: 992px) {
+  .sidebar {
+    width: 200px;
+  }
+  .main-content {
+    padding: 30px;
+  }
+  footer {
+    width: calc(100% - var(--sidebar-width));
+    margin-left: var(--sidebar-width);
+  }
+}
+
+@media (max-width: 768px) {
+  .sidebar {
+    width: 100%;
+    height: auto;
+    position: relative;
+    padding: 20px;
+  }
+  .main-content, footer {
+    width: 100%;
+    margin-left: 0;
+  }
+}
+/* Reset default link styles inside the sidebar */
+.sidebar a.nav-item {
+  text-decoration: none;     /* Remove underline */
+  color: inherit;            /* Inherit text color */
+  display: flex;             /* Make sure layout is preserved */
+  align-items: center;
+  padding: 10px 15px;        /* Match your .nav-item padding */
+}
+
+/* Optional: hover and active states */
+.sidebar a.nav-item:hover {
+  background-color: #f0f0f0; /* Match your hover style */
+}
+
+
+.nav-item.active {
+  background-color: rgba(255, 255, 255, 0.15);
+}
+
+
+/* Optional: if .nav-item was styled as block before */
+.sidebar a.nav-item {
+  width: 100%;
+}
+
+.card-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 35px;
+    margin-top: 20px;
+    justify-content: flex-start;
+  }
+  
+  /* Limit max width to 3 per row, each 30% */
+  .card-grid .card,
+  .card-grid .new-resume-card {
+    flex: 1 1 calc(33.333% - 23.33px); /* subtract the gap to avoid overflow */
+    max-width: calc(33.333% - 23.33px);
+    box-sizing: border-box;
+    min-width: 280px; /* prevents shrinking too much */
+  }
+  
+  /* For screens smaller than 992px */
+  @media (max-width: 992px) {
+    .card-grid .card,
+    .card-grid .new-resume-card {
+      flex: 1 1 calc(50% - 17.5px);
+      max-width: calc(50% - 17.5px);
+    }
+  }
+  
+  /* For very small screens */
+  @media (max-width: 600px) {
+    .card-grid .card,
+    .card-grid .new-resume-card {
+      flex: 1 1 100%;
+      max-width: 100%;
+    }
+  }
+
+/* ===== Dashboard Page Specific Styles ===== */
+.dashboard-page-wrapper .main-content {
+  margin-left: 0;
+  width: 100%;
+  padding: 0;
+  min-height: calc(100vh - 60px); /* Account for footer height */
+  padding-bottom: 80px; /* Add extra padding to prevent footer overlap */
+}
+
+.dashboard-page-wrapper .main-content.collapsed {
+  margin-left: 0;
+  width: 100%;
+}
+
+.dashboard-page-wrapper .sidebar.collapsed ~ .main-content .dashboard-gradient-box {
+  max-width: 1600px;
+  transition: max-width 0.3s;
+}
+
+/* ===== Resume and Cover Letter Page Specific Styles ===== */
+.resume-page-wrapper .main-content {
+  margin-left: var(--sidebar-width);
+  padding: 40px 60px;
+  min-height: 100vh;
+  width: 100%;
+  max-width: var(--main-content-max-width);
+  margin-right: auto;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+}
+
+.resume-page-wrapper .main-content.collapsed {
+  margin-left: 70px;
+  width: calc(100% - 70px);
+}
+
+.resume-page-wrapper .card-grid {
+  margin-left: 0; /* Reset any left margin */
+  padding-left: 0; /* Reset any left padding */
+}
+
+.resume-page-wrapper .sidebar.collapsed ~ .main-content .dashboard-gradient-box {
+  max-width: 1600px;
+  transition: max-width 0.3s;
+}
+
+.resume-page-wrapper .main-content {
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.resume-page-wrapper .main-content.collapsed {
+  padding-left: 100px; /* Increased from 60px to 100px when sidebar is collapsed */
+}
+
+.resume-page-wrapper .dashboard-gradient-box {
+  /* No special width overrides */
+}
+
+@media (max-width: 900px) {
+  .resume-page-wrapper .dashboard-gradient-box {
+    max-width: 98vw;
+    padding-left: 1vw;
+    padding-right: 1vw;
+  }
+}
+
+/* ===== Interview Page Specific Styles ===== */
+.resume-page-wrapper .main-content .filters {
+  margin-top: 2rem;
+  margin-bottom: 3rem;
+  padding: 0;
+}
+
+.resume-page-wrapper .main-content .actions {
+  margin-top: 3rem;
+  margin-bottom: 2rem;
+  padding: 0;
+}
+
+.resume-page-wrapper .main-content .section-title {
+  margin-bottom: 2rem;
+  padding: 0;
+}
+
+.resume-page-wrapper .card-grid .card,
+.resume-page-wrapper .card-grid .new-resume-card {
+  flex: 1 1 calc(28.333% - 19.83px); /* 15% smaller than 33.333% */
+  max-width: calc(28.333% - 19.83px);
+  box-sizing: border-box;
+  min-width: 238px; /* 15% smaller than 280px */
+}
+
+.resume-builder-container {
+  border-radius: 20px;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.10);
+  padding: 2rem;
+  max-width: 800px;
+  margin: auto;
+}
+
+.resume-form h2 {
+  font-size: 1.3rem;
+  margin-top: 2rem;
+  color: #003049;
+  font-weight: 600;
+}
+
+.resume-form label.field-label {
+  font-size: 0.98rem;
+  font-style: italic;
+  color: #003049;
+  display: block;
+  margin-top: 1rem;
+  margin-bottom: 0.3rem;
+  font-weight: 500;
+}
+
+.resume-form input,
+.resume-form textarea {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid #bfc9d1;
+  border-radius: 8px;
+  font-family: 'Jost', sans-serif;
+  background: #f8fafc;
+  color: #222;
+  font-size: 1rem;
+  margin-bottom: 0.2rem;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+  transition: border 0.2s, box-shadow 0.2s;
+}
+
+.resume-form input:focus,
+.resume-form textarea:focus {
+  border: 1.5px solid #0077b6;
+  outline: none;
+  box-shadow: 0 2px 8px rgba(0,123,255,0.08);
+}
+
+.resume-form textarea {
+  min-height: 100px;
+  resize: vertical;
+}
+
+.button-row {
+  margin-top: 2rem;
+  display: flex;
+  gap: 1rem;
+}
+
+.submit-btn,
+.download-btn {
+  padding: 0.8rem 2rem;
+  background-color: #007bff;
+  border: none;
+  color: white;
+  border-radius: 8px;
+  font-size: 1rem;
+  cursor: pointer;
+  font-weight: 600;
+  box-shadow: 0 2px 8px rgba(0,123,255,0.08);
+  transition: background 0.2s;
+}
+
+.submit-btn:hover,
+.download-btn:hover {
+  background-color: #0056b3;
+}

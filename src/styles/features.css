@@ -1,0 +1,237 @@
+/* ===== Full-Width Features Page Layout ===== */
+.features-page-wrapper {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: linear-gradient(to bottom, #003049, #0077b6, #00b4d8);
+}
+
+/* ===== Features Page Styles ===== */
+
+.features-cta {
+  text-align: center;
+  margin-bottom: 3rem;
+  padding: 2rem;
+  background: linear-gradient(135deg, rgba(255, 159, 28, 0.1), rgba(255, 174, 60, 0.1));
+  border-radius: 20px;
+  border: 2px solid rgba(255, 159, 28, 0.3);
+  backdrop-filter: blur(10px);
+}
+
+.cta-title {
+  font-size: 3rem;
+  font-weight: 800;
+  color: #333;
+  margin: 12rem 0 0.5rem 0;
+  line-height: 1.2;
+  text-align: center;
+}
+
+.cta-highlight {
+  color: #3b82f6;
+  text-shadow: 0 2px 4px rgba(59, 130, 246, 0.3);
+}
+
+.cta-subtitle {
+  font-size: 1.25rem;
+  color: black;
+  font-weight: 500;
+  margin: 12rem 0 12rem 0;
+  text-align: center;
+}
+
+.features-categories {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 3rem;
+}
+
+.category-filters {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.category-btn {
+  padding: 0.75rem 1.5rem;
+  border: 2px solid rgba(255, 159, 28, 0.3);
+  background: rgba(255, 255, 255, 0.1);
+  color: #333;
+  border-radius: 25px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+}
+
+.category-btn:hover {
+  background: rgba(255, 159, 28, 0.1);
+  border-color: #ff9f1c;
+  transform: translateY(-2px);
+}
+
+.category-btn.active {
+  background: #ff9f1c;
+  color: white;
+  border-color: #ff9f1c;
+}
+
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+  margin: 2rem 0;
+}
+
+.feature-card {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  padding: 2rem;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 1.5rem;
+}
+
+.feature-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.15);
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.feature-icon {
+  flex-shrink: 0;
+  width: 60px;
+  height: 60px;
+  background: linear-gradient(135deg, #ff9f1c, #ffae3c);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 1.5rem;
+  box-shadow: 0 4px 12px rgba(255, 159, 28, 0.3);
+}
+
+.feature-content {
+  flex: 1;
+  width: 100%;
+}
+
+.feature-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #333;
+  margin-bottom: 0.75rem;
+  line-height: 1.3;
+}
+
+.feature-description {
+  color: #666;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  margin-bottom: 1rem;
+}
+
+.feature-category {
+  display: inline-block;
+  background: rgba(255, 159, 28, 0.1);
+  color: #ff9f1c;
+  padding: 0.25rem 0.75rem;
+  border-radius: 12px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.features-footer {
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  padding-top: 2rem;
+}
+
+.cta-buttons {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  justify-items: center;
+  align-items: stretch;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.features-footer-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 500px;
+  margin: 0 auto 2rem auto;
+  text-align: center;
+}
+
+.features-footer-content .left,
+.features-footer-content .right {
+  text-align: center;
+  padding: 0;
+  align-self: center;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .features-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  
+  .feature-card {
+    padding: 1.5rem;
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  .feature-icon {
+    align-self: center;
+  }
+  
+  .category-filters {
+    gap: 0.5rem;
+  }
+  
+  .category-btn {
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
+  }
+  
+  .cta-buttons {
+    grid-template-columns: 1fr;
+    max-width: 300px;
+  }
+  
+  .features-footer-content {
+    grid-template-columns: 1fr;
+    max-width: 300px;
+    text-align: center;
+  }
+  
+  .features-footer-content .left,
+  .features-footer-content .right {
+    text-align: center;
+    padding: 0;
+  }
+}
+
+/* Features page specific highlight text styling */
+.features-page-wrapper .highlight {
+  color: black;
+  font-weight: 700;
+}
+
+.title-card .section-title {
+  color: black;
+} 

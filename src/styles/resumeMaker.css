@@ -1,0 +1,41 @@
+/* Resume Maker Page Specific Layout */
+.resume-maker-content {
+  margin-left: var(--sidebar-width);
+  padding: 40px 60px;
+  min-height: 100vh;
+  width: 100%;
+  max-width: none;
+  margin-right: auto;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+}
+
+.resume-maker-gradient-box {
+  width: 88vw;
+  max-width: 3240px;
+  min-width: 0;
+  margin: 24px auto 16px auto;
+  box-sizing: border-box;
+  padding-left: 2vw;
+  padding-right: 2vw;
+  background: linear-gradient(
+    to right bottom,
+    #46c4e0 10%,
+    white 50%,
+    #c97c29 100%
+  );
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  position: relative;
+  z-index: 1;
+  color: #333;
+}
+
+@media (max-width: 1200px) {
+  .resume-maker-gradient-box {
+    max-width: 88vw;
+    width: 88vw;
+  }
+} 
