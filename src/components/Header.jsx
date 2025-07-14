@@ -24,8 +24,7 @@ const Header = () => {
             <option value="Pro">Pro</option>
           </select>
         </div>
-        <a href="/login" className="hover:underline text-white">Login</a>
-        <a href="/signup" className="hover:underline text-white">Sign Up</a>
+        <a href="/login" className="hover:underline text-white">Login / Sign Up</a>
       </nav>
     </header>
   );

@@ -23,7 +23,10 @@
     padding: 25px 40px;
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
     border-radius: 16px;
-    margin: 40px 10px 20px 80px;
+    margin: 40px 10px 20px 40px;
+    width: 80%;
+    margin-left: 0px;
+    margin-right: auto;
 
     min-height: auto;
     max-height: calc(100vh - 140px);
@@ -34,6 +37,7 @@
     color: #333;
     border: 1px solid rgba(255, 255, 255, 0.3);
     position: relative;
+    left: -80px;
     z-index: 1;
 }
 
@@ -54,6 +58,8 @@
   display: flex;
   flex-direction: column;
   gap: 25px;
+  width: 80%;
+  margin: 0 auto;
 }
 
 .widget-row {
@@ -340,5 +346,89 @@
   .container {
     padding: 20px;
     margin: 20px 10px;
+  }
+}
+
+.main-content {
+  position: relative;
+  left: -80px;
+  min-height: calc(100vh - 60px);
+  transition: margin-left 0.3s cubic-bezier(.4,0,.2,1);
+}
+.main-content.collapsed {
+  margin-left: 70px;
+}
+.main-content.expanded {
+  margin-left: var(--sidebar-width);
+}
+.dashboard-page-wrapper .container {
+  width: 60%;
+  margin: 0 auto;
+  box-sizing: border-box;
+  font-size: 0.49em;
+}
+
+.dashboard-page-wrapper .container .dashboard-header {
+  margin-bottom: 14.7px; /* 30% less than 21px */
+}
+
+.dashboard-page-wrapper .container .dashboard-widgets {
+  gap: 12.25px; /* 30% less than 17.5px */
+}
+
+.dashboard-page-wrapper .container .widget-row {
+  gap: 12.25px; /* 30% less than 17.5px */
+  width: 85%;
+  max-width: 85%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.dashboard-page-wrapper .container .dashboard-widget {
+  padding: 7.8px; /* 20% less than 9.8px */
+  min-height: 39.2px; /* 20% less than 49px, if min-height is set */
+}
+
+.dashboard-page-wrapper .container .widget-header {
+  margin-bottom: 7.35px; /* 30% less than 10.5px */
+  padding-bottom: 4.9px; /* 30% less than 7px */
+}
+
+.dashboard-page-wrapper .container .widget-title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+}
+
+.dashboard-page-wrapper .container .widget-content {
+  min-height: 49px; /* 30% less than 70px */
+}
+
+.dashboard-page-wrapper .container .stat-item {
+  padding: 5.6px; /* 20% less than 7px */
+  gap: 3.2px;
+  min-width: 80px; /* add or reduce as needed for compactness */
+}
+
+.dashboard-page-wrapper .container .stat-content {
+  padding: 0 2px;
+  margin: 0;
+  width: 80%;
+  max-width: 80%;
+}
+
+.dashboard-page-wrapper .container .actions-grid {
+  gap: 6px; /* reduce from 12px */
+}
+
+.dashboard-page-wrapper .container .action-button {
+  padding: 6px 4px; /* reduce from 15px 10px */
+  min-height: 40px;
+}
+
+@media (max-width: 900px) {
+  .container {
+    width: 98vw;
+    margin: 0 1vw;
   }
 }

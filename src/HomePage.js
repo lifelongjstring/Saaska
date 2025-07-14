@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import Header from "./components/Header";
 import "./App.css";
 import { useUserActivity } from "./contexts/UserActivityContext";
+import './styles/home-mobile.css';
 
 export default function HomePage() {
   const [selectedService, setSelectedService] = useState("ai-tools.html");
@@ -53,30 +54,32 @@ export default function HomePage() {
 
       {/* Features Section */}
       <section className="features flex flex-wrap justify-center gap-4 px-2 py-6 text-white">
-        <a href="resume.html" className="feature-card text-center p-4 bg-white bg-opacity-10 rounded-lg shadow-md w-64 text-white">
+        <a href="/resume" className="feature-card text-center p-4 bg-white bg-opacity-10 rounded-lg shadow-md w-64 text-white">
           <i className="fas fa-file-alt text-4xl mb-3 text-white"></i>
           <h3 className="text-xl font-semibold mb-1 text-white">Resumes & Cover Letters</h3>
           <p className="text-white">Create professional documents that get you noticed by employers</p>
         </a>
 
-        <a href="job-search.html" className="feature-card text-center p-4 bg-white bg-opacity-10 rounded-lg shadow-md w-64 text-white">
+        <a href="/job-search" className="feature-card text-center p-4 bg-white bg-opacity-10 rounded-lg shadow-md w-64 text-white">
           <i className="fas fa-city text-4xl mb-3 text-white"></i>
           <h3 className="text-xl font-semibold mb-1 text-white">Search & Apply for Jobs</h3>
           <p className="text-white">Find and apply to the best opportunities in your field</p>
         </a>
 
-        <a href="interviews.html" className="feature-card text-center p-4 bg-white bg-opacity-10 rounded-lg shadow-md w-64 text-white">
+        <a href="/interviews" className="feature-card text-center p-4 bg-white bg-opacity-10 rounded-lg shadow-md w-64 text-white">
           <i className="fas fa-lightbulb text-4xl mb-3 text-white"></i>
           <h3 className="text-xl font-semibold mb-1 text-white">Practice Interviews</h3>
           <p className="text-white">Prepare for your interviews with our AI-powered simulator</p>
         </a>
 
-        <a href="applications.html" className="feature-card text-center p-4 bg-white bg-opacity-10 rounded-lg shadow-md w-64 text-white">
+        <a href="/applications" className="feature-card text-center p-4 bg-white bg-opacity-10 rounded-lg shadow-md w-64 text-white">
           <i className="fas fa-briefcase text-4xl mb-3 text-white"></i>
           <h3 className="text-xl font-semibold mb-1 text-white">Track Applications</h3>
           <p className="text-white">Manage all your job applications in one place</p>
         </a>
       </section>
+
+
 
       {/* Footer */}
       <div className="homepage-footer mt-4 text-center text-sm text-white/80">

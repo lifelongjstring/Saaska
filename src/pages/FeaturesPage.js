@@ -51,18 +51,6 @@ export default function FeaturesPage() {
       description: "Get insights into how your resume performs with detailed analytics and improvement suggestions.",
       icon: "fas fa-chart-line",
       category: "Analytics"
-    },
-    {
-      title: "Team Collaboration",
-      description: "Work together with your team on resumes and applications with real-time collaboration tools.",
-      icon: "fas fa-users",
-      category: "Collaboration"
-    },
-    {
-      title: "Custom Branding",
-      description: "Add your company logo and branding to create professional, branded documents.",
-      icon: "fas fa-palette",
-      category: "Branding"
     }
   ];
 

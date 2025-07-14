@@ -7,6 +7,7 @@ import "../App.css";
 import { FaRobot } from 'react-icons/fa';
 import { useUserActivity } from "../contexts/UserActivityContext";
 import ActivityTracker from "../components/ActivityTracker";
+import { useSidebar } from "../contexts/SidebarContext";
 
 /**
  * InterviewQuestionsPage component displays the interview practice page with filters.
@@ -21,6 +22,7 @@ export default function InterviewQuestionsPage() {
   const [aiError, setAiError] = useState("");
   const [questions, setQuestions] = useState([]);
   const { trackPageVisit, trackInterviewPracticed } = useUserActivity();
+  const { sidebarCollapsed } = useSidebar();
 
   useEffect(() => {
     trackPageVisit('Interview Practice');
@@ -98,23 +100,49 @@ export default function InterviewQuestionsPage() {
       <Sidebar />
 
       <main className="main-content" style={{ display: 'block', width: '100%', margin: 0, padding: 0 }}>
-        <div className="dashboard-gradient-box" style={{ width: '100%', maxWidth: '1440px', margin: '24px auto 16px auto' }}>
+        <div
+          className={`dashboard-gradient-box ${sidebarCollapsed ? 'collapsed' : 'expanded'}`}
+          style={{
+            width: sidebarCollapsed
+              ? '100%'
+              : '80%',
+            maxWidth: 1200,
+            margin: '24px auto 16px auto',
+            marginLeft: sidebarCollapsed ? '70px' : 'var(--sidebar-width, 220px)',
+            transition: 'width 0.3s cubic-bezier(.4,0,.2,1), margin-left 0.3s cubic-bezier(.4,0,.2,1)',
+          }}
+        >
           <h1 className="section-title">
             Practicing Interviews – <span className="highlight">Questions</span>
           </h1>
 
           <div className="filters-row">
             <div className="filter-group">
-              <label>Job Title</label>
+              <label
+                style={{
+                  fontSize: sidebarCollapsed ? '1.1rem' : '0.95rem',
+                  transition: 'font-size 0.3s cubic-bezier(.4,0,.2,1)'
+                }}
+              >Job Title</label>
               <input
                 type="text"
                 value={jobTitle}
                 onChange={e => setJobTitle(e.target.value)}
                 placeholder="e.g. Software Engineer"
+                style={{
+                  fontSize: sidebarCollapsed ? '1.1rem' : '0.95rem',
+                  padding: sidebarCollapsed ? '14px 18px' : '12px 14px',
+                  transition: 'font-size 0.3s, padding 0.3s'
+                }}
               />
             </div>
             <div className="filter-group">
-              <label>Industry</label>
+              <label
+                style={{
+                  fontSize: sidebarCollapsed ? '1.1rem' : '0.95rem',
+                  transition: 'font-size 0.3s cubic-bezier(.4,0,.2,1)'
+                }}
+              >Industry</label>
               <AsyncSelect
                 classNamePrefix="custom-select"
                 cacheOptions
@@ -137,11 +165,29 @@ export default function InterviewQuestionsPage() {
                 }}
                 onChange={opt => setIndustry(opt?.label || "")}
                 placeholder="Select Industry"
-                styles={{ container: base => ({ ...base, width: '100%' }) }}
+                styles={{
+                  container: base => ({ ...base, width: '100%' }),
+                  control: base => ({
+                    ...base,
+                    fontSize: sidebarCollapsed ? '1.1rem' : '0.95rem',
+                    minHeight: sidebarCollapsed ? 54 : 48,
+                    transition: 'font-size 0.3s, min-height 0.3s'
+                  }),
+                  singleValue: base => ({
+                    ...base,
+                    fontSize: sidebarCollapsed ? '1.1rem' : '0.95rem',
+                    transition: 'font-size 0.3s'
+                  })
+                }}
               />
             </div>
             <div className="filter-group">
-              <label>Company</label>
+              <label
+                style={{
+                  fontSize: sidebarCollapsed ? '1.1rem' : '0.95rem',
+                  transition: 'font-size 0.3s cubic-bezier(.4,0,.2,1)'
+                }}
+              >Company</label>
               <AsyncSelect
                 classNamePrefix="custom-select"
                 cacheOptions
@@ -149,13 +195,35 @@ export default function InterviewQuestionsPage() {
                 defaultOptions
                 onChange={opt => setCompany(opt?.label || "")}
                 placeholder="Select Company"
-                styles={{ container: base => ({ ...base, width: '100%' }) }}
+                styles={{
+                  container: base => ({ ...base, width: '100%' }),
+                  control: base => ({
+                    ...base,
+                    fontSize: sidebarCollapsed ? '1.1rem' : '0.95rem',
+                    minHeight: sidebarCollapsed ? 54 : 48,
+                    transition: 'font-size 0.3s, min-height 0.3s'
+                  }),
+                  singleValue: base => ({
+                    ...base,
+                    fontSize: sidebarCollapsed ? '1.1rem' : '0.95rem',
+                    transition: 'font-size 0.3s'
+                  })
+                }}
               />
             </div>
           </div>
 
           <div className="actions" style={{ marginBottom: 24 }}>
-            <button className="btn secondary" type="button" onClick={() => window.history.back()}>
+            <button
+              className="btn secondary"
+              type="button"
+              onClick={() => window.history.back()}
+              style={{
+                fontSize: sidebarCollapsed ? '1.1rem' : '0.95rem',
+                padding: sidebarCollapsed ? '14px 32px' : '12px 32px',
+                transition: 'font-size 0.3s, padding 0.3s'
+              }}
+            >
               Back to Interview Hub
             </button>
             <button
@@ -163,7 +231,14 @@ export default function InterviewQuestionsPage() {
               type="button"
               onClick={handleAIGenerate}
               disabled={aiLoading}
-              style={{ display: 'flex', alignItems: 'center', gap: 8 }}
+              style={{
+                fontSize: sidebarCollapsed ? '1.1rem' : '0.95rem',
+                padding: sidebarCollapsed ? '14px 32px' : '12px 32px',
+                display: 'flex',
+                alignItems: 'center',
+                gap: 8,
+                transition: 'font-size 0.3s, padding 0.3s'
+              }}
             >
               <FaRobot style={{ fontSize: 20 }} />
               {aiLoading ? 'Generating...' : 'Generate Interview Questions with AI'}

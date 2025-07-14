@@ -51,7 +51,7 @@ const StatsWidget = () => {
   ];
 
   return (
-    <div className="stats-widget">
+    <div className="stats-widget" style={{ padding: '32px 24px' }}>
       <div className="stats-grid">
         {statItems.map((item, index) => (
           <div key={index} className="stat-item" style={{ borderLeftColor: item.color }}>
@@ -66,24 +66,6 @@ const StatsWidget = () => {
         ))}
       </div>
       
-      <div className="additional-stats">
-        <div className="stat-row">
-          <span className="stat-label">Total Time Spent:</span>
-          <span className="stat-value">{formatTimeSpent(stats.totalTimeSpent)}</span>
-        </div>
-        <div className="stat-row">
-          <span className="stat-label">Last Active:</span>
-          <span className="stat-value">{formatLastActive(stats.lastActive)}</span>
-        </div>
-        {stats.favoriteFeatures.length > 0 && (
-          <div className="stat-row">
-            <span className="stat-label">Favorite Features:</span>
-            <span className="stat-value">
-              {stats.favoriteFeatures.join(', ')}
-            </span>
-          </div>
-        )}
-      </div>
     </div>
   );
 };

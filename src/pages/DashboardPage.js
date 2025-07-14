@@ -8,6 +8,7 @@ import StatsWidget from "../components/StatsWidget";
 import QuickActions from "../components/QuickActions";
 import ActivityTracker from "../components/ActivityTracker";
 import { useUserActivity } from "../contexts/UserActivityContext";
+import { useSidebar } from "../contexts/SidebarContext";
 import "../styles/dashboard.css";
 import "../styles/resume.css";
 
@@ -19,6 +20,7 @@ import "../styles/resume.css";
 export default function DashboardPage() {
   const navigate = useNavigate();
   const { trackPageVisit, stats } = useUserActivity();
+  const { sidebarCollapsed } = useSidebar();
 
   useEffect(() => {
     trackPageVisit('Dashboard');
@@ -69,7 +71,7 @@ export default function DashboardPage() {
       <ActivityTracker feature="dashboard" pageName="Dashboard" />
       <Sidebar />
 
-      <main className="main-content">
+      <main className={`main-content ${sidebarCollapsed ? 'collapsed' : 'expanded'}`}>
         <div className="container">
           <div className="dashboard-header">
             <h1 className="section-title">Your Career Dashboard</h1>

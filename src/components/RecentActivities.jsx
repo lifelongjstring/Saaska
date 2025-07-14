@@ -61,7 +61,7 @@ const RecentActivities = () => {
 
   return (
     <div className="recent-activities">
-      {activities.map((activity) => (
+      {activities.slice(0, 3).map((activity, idx) => (
         <div key={activity.id} className="activity-item">
           <div className="activity-icon">
             {getActivityIcon(activity.type)}

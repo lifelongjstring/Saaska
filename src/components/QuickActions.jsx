@@ -77,8 +77,7 @@ const QuickActions = () => {
 
   return (
     <div className="quick-actions">
-      <h3>Quick Actions</h3>
-      <div className="actions-grid">
+      <div className="actions-grid" style={{ minHeight: '80px' }}>
         {actions.map((action, index) => (
           <button
             key={index}
@@ -86,11 +85,15 @@ const QuickActions = () => {
             onClick={() => handleActionClick(action.path)}
             style={{ 
               borderLeftColor: action.color,
-              '--hover-color': action.color
+              '--hover-color': action.color,
+              padding: '4px 12px',
+              fontSize: '0.85rem',
+              minWidth: '80px',
+              height: '60px'
             }}
           >
             <span className="action-icon">{action.icon}</span>
-            <span className="action-label">{action.label}</span>
+            <span style={{ fontSize: '0.75rem' }}>{action.label}</span>
           </button>
         ))}
       </div>

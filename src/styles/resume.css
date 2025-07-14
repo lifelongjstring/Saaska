@@ -495,3 +495,10 @@ footer {
 .download-btn:hover {
   background-color: #0056b3;
 }
+
+.container {
+  width: 80%;
+  margin-left: 0px;
+  position: relative;
+  left: -80px;
+}
