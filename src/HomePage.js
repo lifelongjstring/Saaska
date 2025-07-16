@@ -13,7 +13,8 @@ export default function HomePage() {
 
   useEffect(() => {
     trackPageVisit('Home');
-  }, [trackPageVisit]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const handleNavigation = () => {
     if (selectedService) {
