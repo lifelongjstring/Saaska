@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Navigate } from "react-router-dom";
 import Header from "./components/Header";
 import "./App.css";
 import { useUserActivity } from "./contexts/UserActivityContext";
@@ -7,6 +7,7 @@ import './styles/home-mobile.css';
 
 export default function HomePage() {
   const [selectedService, setSelectedService] = useState("dashboard");
+  const [redirect, setRedirect] = useState(null);
   const navigate = useNavigate();
   const { trackPageVisit } = useUserActivity();
 
@@ -16,9 +17,13 @@ export default function HomePage() {
 
   const handleNavigation = () => {
     if (selectedService) {
-      navigate(`/${selectedService}`);
+      setRedirect('/' + selectedService);
     }
   };
+
+  if (redirect) {
+    return <Navigate to={redirect} />;
+  }
   
 
   return (
