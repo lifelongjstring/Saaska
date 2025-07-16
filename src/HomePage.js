@@ -6,7 +6,7 @@ import { useUserActivity } from "./contexts/UserActivityContext";
 import './styles/home-mobile.css';
 
 export default function HomePage() {
-  const [selectedService, setSelectedService] = useState("ai-tools.html");
+  const [selectedService, setSelectedService] = useState("dashboard");
   const navigate = useNavigate();
   const { trackPageVisit } = useUserActivity();
 
@@ -39,11 +39,16 @@ export default function HomePage() {
             className="bg-white bg-opacity-30 rounded px-2 py-1 text-white"
             style={{ color: 'white', backgroundColor: 'rgba(255,255,255,0.2)' }}
           >
-            <option value="ai-tools">AI Tools</option>
-            <option value="resume">Resume</option>
-            <option value="cover_letter">Cover Letter</option>
+            <option value="dashboard">Dashboard</option>
+            <option value="resume">Resumes</option>
+            <option value="cover_letter">Cover Letters</option>
             <option value="applications">Applications</option>
-            <option value="interviews">Interview Practicing</option>
+            <option value="interviews">Interview Practice</option>
+            <option value="job-search">Job Search</option>
+            <option value="resume-maker-page">Resume Maker</option>
+            <option value="cover-letter-maker-page">Cover Letter Maker</option>
+            <option value="features">Features</option>
+            <option value="pricing">Pricing</option>
           </select>
         </div>
 
