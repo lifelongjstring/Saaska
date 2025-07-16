@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/Saaska/static/css/main.d881ee0b.css",
-    "main.js": "/Saaska/static/js/main.edb90b29.js",
-    "static/js/453.927acbb8.chunk.js": "/Saaska/static/js/453.927acbb8.chunk.js",
+    "main.js": "/Saaska/static/js/main.0312e248.js",
+    "static/js/453.2ac8b275.chunk.js": "/Saaska/static/js/453.2ac8b275.chunk.js",
     "index.html": "/Saaska/index.html",
     "main.d881ee0b.css.map": "/Saaska/static/css/main.d881ee0b.css.map",
-    "main.edb90b29.js.map": "/Saaska/static/js/main.edb90b29.js.map",
-    "453.927acbb8.chunk.js.map": "/Saaska/static/js/453.927acbb8.chunk.js.map"
+    "main.0312e248.js.map": "/Saaska/static/js/main.0312e248.js.map",
+    "453.2ac8b275.chunk.js.map": "/Saaska/static/js/453.2ac8b275.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.d881ee0b.css",
-    "static/js/main.edb90b29.js"
+    "static/js/main.0312e248.js"
   ]
 }
