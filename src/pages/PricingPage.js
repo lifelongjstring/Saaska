@@ -114,7 +114,7 @@ export default function PricingPage() {
               All plans include a 14-day free trial. No credit card required.
             </p>
             <p className="text-sm text-gray-500">
-              Need a custom plan? <button className="text-blue-600 hover:underline">Contact us</button>
+              Need a custom plan? <a href="#" className="text-blue-600 hover:underline">Contact us</a>
             </p>
           </div>
         </div>

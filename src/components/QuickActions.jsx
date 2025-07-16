@@ -4,7 +4,7 @@ import { useUserActivity } from '../contexts/UserActivityContext';
 
 const QuickActions = () => {
   const navigate = useNavigate();
-  const { stats } = useUserActivity();
+  const { stats, getActivityByFeature } = useUserActivity();
 
   const getQuickActions = () => {
     const actions = [];

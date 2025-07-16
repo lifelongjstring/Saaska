@@ -1,7 +1,7 @@
 // src/App.js
 import React from "react";
 import Footer from "./components/Footer";
-import { HashRouter as Router, Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { SidebarProvider } from "./contexts/SidebarContext";
 import { UserActivityProvider } from "./contexts/UserActivityContext";
 import HomePage from "./HomePage";

@@ -59,7 +59,7 @@ export const UserActivityProvider = ({ children }) => {
       favoriteFeatures: getFavoriteFeatures()
     };
     setStats(newStats);
-  }, [activities, getFavoriteFeatures]);
+  }, [activities]);
 
   const getFavoriteFeatures = () => {
     const featureCounts = {};

@@ -28,6 +28,30 @@ export default function InterviewQuestionsPage() {
   }, [trackPageVisit]);
 
   /**
+   * Simulated API fetch for companies.
+   * @param {string} inputValue - The input value to filter companies.
+   * @param {function} callback - The callback to return filtered companies.
+   * @returns {void}
+   * @precondition inputValue is a string, callback is a function.
+   */
+  const loadCompanyOptions = (inputValue, callback) => {
+    setTimeout(() => {
+      const allCompanies = [
+        { value: "google", label: "Google" },
+        { value: "microsoft", label: "Microsoft" },
+        { value: "amazon", label: "Amazon" },
+        { value: "apple", label: "Apple" },
+        { value: "facebook", label: "Facebook" },
+        { value: "netflix", label: "Netflix" },
+      ];
+      const filtered = allCompanies.filter(company =>
+        company.label.toLowerCase().includes(inputValue.toLowerCase())
+      );
+      callback(filtered);
+    }, 800);
+  };
+
+  /**
    * Generate realistic interview questions using AI based on user context.
    * TODO: Replace mock with real AI API integration (e.g., OpenAI, backend endpoint).
    * @returns {Promise<void>}

@@ -1,8 +1,11 @@
 // src/components/ApplicationsTable.jsx
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { MaterialReactTable } from 'material-react-table';
 import Typography from '@mui/material/Typography';
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { QueryClient, QueryClientProvider, useInfiniteQuery } from '@tanstack/react-query';
+
+// Number of records per fetch
+const fetchSize = 25;
 
 // Table column definitions
 const columns = [
@@ -40,6 +43,13 @@ function getApplicationsFromLocalStorage() {
  * @precondition Should be used within a React Router context and with valid data fetching setup.
  */
 function ApplicationsTable() {
+  const tableContainerRef = useRef(null);
+  const rowVirtualizerInstanceRef = useRef(null);
+
+  const [columnFilters, setColumnFilters] = useState([]);
+  const [globalFilter, setGlobalFilter] = useState('');
+  const [sorting, setSorting] = useState([]);
+
   // Use localStorage for demo; replace with API in production
   const [applications, setApplications] = useState(getApplicationsFromLocalStorage());
 
