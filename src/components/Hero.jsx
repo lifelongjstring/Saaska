@@ -21,7 +21,7 @@ const Hero = () => {
         </select>
       </div>
 
-      <a href="#" className="btn">Get Started</a>
+      <button className="btn">Get Started</button>
     </section>
   );
 };

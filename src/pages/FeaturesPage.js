@@ -54,8 +54,6 @@ export default function FeaturesPage() {
     }
   ];
 
-  const categories = ["All", "Resume Tools", "Cover Letters", "Job Search", "Interview Prep", "Organization", "Analytics", "Collaboration", "Branding"];
-
   return (
     <div className="features-page-wrapper min-h-screen flex flex-col bg-gradient-to-b from-[#003049] via-[#0077b6] to-[#00b4d8]">
       <Header />
