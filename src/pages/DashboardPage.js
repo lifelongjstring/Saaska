@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Sidebar from "../components/Sidebar";
 import Footer from "../components/Footer";
@@ -11,6 +11,7 @@ import { useUserActivity } from "../contexts/UserActivityContext";
 import { useSidebar } from "../contexts/SidebarContext";
 import "../styles/dashboard.css";
 import "../styles/resume.css";
+import MobileDrawer from '../components/MobileDrawer';
 
 /**
  * DashboardPage component displays the user's dynamic dashboard with widgets.
@@ -21,6 +22,12 @@ export default function DashboardPage() {
   const navigate = useNavigate();
   const { trackPageVisit, stats } = useUserActivity();
   const { sidebarCollapsed } = useSidebar();
+
+  // Mobile drawer state
+  const [drawerOpen, setDrawerOpen] = useState(false);
+
+  // Detect mobile
+  const isMobile = typeof window !== 'undefined' && window.matchMedia && window.matchMedia('(max-width: 600px)').matches;
 
   useEffect(() => {
     trackPageVisit('Dashboard');
@@ -68,8 +75,28 @@ export default function DashboardPage() {
 
   return (
     <div className="dashboard-page-wrapper">
+      {/* Hamburger for mobile */}
+      {isMobile && !drawerOpen && (
+        <button
+          className="hamburger-btn"
+          aria-label="Open sidebar menu"
+          aria-expanded={drawerOpen}
+          onClick={() => setDrawerOpen(true)}
+          style={{
+            position: 'fixed', top: 12, left: 12, zIndex: 2001, background: 'none', border: 'none', fontSize: 28, color: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center', width: 44, height: 44, borderRadius: 8, boxShadow: '0 2px 8px rgba(0,0,0,0.12)'
+          }}
+        >
+          <span style={{ display: 'inline-block', width: 28, height: 28 }}>
+            <svg viewBox="0 0 100 80" width="28" height="28"><rect width="100" height="12" rx="6" fill="currentColor"/><rect y="30" width="100" height="12" rx="6" fill="currentColor"/><rect y="60" width="100" height="12" rx="6" fill="currentColor"/></svg>
+          </span>
+        </button>
+      )}
       <ActivityTracker feature="dashboard" pageName="Dashboard" />
-      <Sidebar />
+      {isMobile ? (
+        <MobileDrawer isOpen={drawerOpen} onClose={() => setDrawerOpen(false)} />
+      ) : (
+        <Sidebar />
+      )}
 
       <main className={`main-content ${sidebarCollapsed ? 'collapsed' : 'expanded'}`}>
         <div className="container">
@@ -78,8 +105,48 @@ export default function DashboardPage() {
             <p className="welcome-message">{getWelcomeMessage()}</p>
           </div>
 
-          <div className="dashboard-widgets">
-            <div className="widget-row">
+          {/* Mobile: Stack 4 sections */}
+          {isMobile ? (
+            <div className="dashboard-widgets" style={{ display: 'flex', flexDirection: 'column', gap: 18 }}>
+              <DashboardWidget 
+                title="Your Statistics" 
+                icon="📊"
+                className="stats-widget-container dashboard-widget-card"
+              >
+                <StatsWidget />
+              </DashboardWidget>
+              <DashboardWidget 
+                title="Quick Actions" 
+                icon="⚡"
+                className="quick-actions-container dashboard-widget-card"
+              >
+                <QuickActions />
+              </DashboardWidget>
+              <DashboardWidget 
+                title="Recent Activity" 
+                icon="🕒"
+                className="activity-widget-container dashboard-widget-card"
+              >
+                <RecentActivities />
+              </DashboardWidget>
+              <DashboardWidget 
+                title="Today's Tip" 
+                icon="💡"
+                className="tips-widget-container dashboard-widget-card"
+              >
+                <div className="tip-content">
+                  <p>{getTips()}</p>
+                  <button 
+                    className="tip-action-btn"
+                    onClick={() => navigate('/features')}
+                  >
+                    Explore More Features
+                  </button>
+                </div>
+              </DashboardWidget>
+            </div>
+          ) : (
+            <div className="dashboard-widgets">
               <DashboardWidget 
                 title="Your Statistics" 
                 icon="📊"
@@ -87,7 +154,6 @@ export default function DashboardPage() {
               >
                 <StatsWidget />
               </DashboardWidget>
-              
               <DashboardWidget 
                 title="Quick Actions" 
                 icon="⚡"
@@ -95,9 +161,6 @@ export default function DashboardPage() {
               >
                 <QuickActions />
               </DashboardWidget>
-            </div>
-
-            <div className="widget-row">
               <DashboardWidget 
                 title="Recent Activity" 
                 icon="🕒"
@@ -105,7 +168,6 @@ export default function DashboardPage() {
               >
                 <RecentActivities />
               </DashboardWidget>
-              
               <DashboardWidget 
                 title="Today's Tip" 
                 icon="💡"
@@ -122,7 +184,7 @@ export default function DashboardPage() {
                 </div>
               </DashboardWidget>
             </div>
-          </div>
+          )}
         </div>
       </main>
 

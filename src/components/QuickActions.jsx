@@ -77,8 +77,8 @@ const QuickActions = () => {
 
   return (
     <div className="quick-actions">
-      <div className="actions-grid" style={{ minHeight: '80px' }}>
-        {actions.map((action, index) => (
+      <div className="actions-grid">
+        {actions.slice(0, 4).map((action, index) => (
           <button
             key={index}
             className="action-button"
@@ -97,6 +97,30 @@ const QuickActions = () => {
           </button>
         ))}
       </div>
+      {/* Optionally render additional actions below the grid */}
+      {actions.length > 4 && (
+        <div className="extra-actions">
+          {actions.slice(4).map((action, index) => (
+            <button
+              key={index + 4}
+              className="action-button"
+              onClick={() => handleActionClick(action.path)}
+              style={{ 
+                borderLeftColor: action.color,
+                '--hover-color': action.color,
+                padding: '4px 12px',
+                fontSize: '0.85rem',
+                minWidth: '80px',
+                height: '60px',
+                marginTop: 8
+              }}
+            >
+              <span className="action-icon">{action.icon}</span>
+              <span style={{ fontSize: '0.75rem' }}>{action.label}</span>
+            </button>
+          ))}
+        </div>
+      )}
     </div>
   );
 };

@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import AsyncSelect from "react-select/async";
 import Sidebar from "../components/Sidebar";
 import Footer from "../components/Footer";
 import "../styles/interview.css";
@@ -95,170 +94,113 @@ export default function InterviewQuestionsPage() {
   };
 
   return (
-    <div className="resume-page-wrapper min-h-screen flex flex-col bg-gradient-to-b from-[#003049] via-[#0077b6] to-[#00b4d8]">
-      <ActivityTracker feature="interview_practice" pageName="Interview Practice" />
-      <Sidebar />
+    <>
+      <div className="resume-page-wrapper">
+        <ActivityTracker feature="interview_practice" pageName="Interview Practice" />
+        <Sidebar />
+        <main className="main-content">
+          <div
+            className={`dashboard-gradient-box ${sidebarCollapsed ? 'collapsed' : 'expanded'}`}
+            style={{
+              maxWidth: 1200,
+              margin: '24px auto 16px 180px',
+              width: '100%',
+              transition: 'margin 0.3s cubic-bezier(.4,0,.2,1)',
+            }}
+          >
+            <h1 className="section-title">
+              Practicing Interviews – <span className="highlight">Questions</span>
+            </h1>
 
-      <main className="main-content" style={{ display: 'block', width: '100%', margin: 0, padding: 0 }}>
-        <div
-          className={`dashboard-gradient-box ${sidebarCollapsed ? 'collapsed' : 'expanded'}`}
-          style={{
-            width: sidebarCollapsed
-              ? '100%'
-              : '80%',
-            maxWidth: 1200,
-            margin: '24px auto 16px auto',
-            marginLeft: sidebarCollapsed ? '70px' : 'var(--sidebar-width, 220px)',
-            transition: 'width 0.3s cubic-bezier(.4,0,.2,1), margin-left 0.3s cubic-bezier(.4,0,.2,1)',
-          }}
-        >
-          <h1 className="section-title">
-            Practicing Interviews – <span className="highlight">Questions</span>
-          </h1>
+            <form className="filters-row" style={{ display: 'flex', gap: 24, marginBottom: 32 }}>
+              <div className="filter-group" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+                <label style={{ textAlign: 'center', marginBottom: 4 }}>Job Title</label>
+                <input
+                  type="text"
+                  value={jobTitle}
+                  onChange={e => setJobTitle(e.target.value)}
+                  placeholder="e.g. Software Engineer"
+                  style={{ padding: '12px 14px', fontSize: '1rem', width: '180px' }}
+                />
+              </div>
+              <div className="filter-group" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+                <label style={{ textAlign: 'center', marginBottom: 4 }}>Industry</label>
+                <select
+                  value={industry}
+                  onChange={e => setIndustry(e.target.value)}
+                  style={{ padding: '12px 14px', fontSize: '1rem', width: '180px' }}
+                >
+                  <option value="">Select Industry</option>
+                  <option value="Technology">Technology</option>
+                  <option value="Finance">Finance</option>
+                  <option value="Healthcare">Healthcare</option>
+                  <option value="Education">Education</option>
+                </select>
+              </div>
+              <div className="filter-group" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+                <label style={{ textAlign: 'center', marginBottom: 4 }}>Company</label>
+                <select
+                  value={company}
+                  onChange={e => setCompany(e.target.value)}
+                  style={{ padding: '12px 14px', fontSize: '1rem', width: '180px' }}
+                >
+                  <option value="">Select Company</option>
+                  <option value="Google">Google</option>
+                  <option value="Microsoft">Microsoft</option>
+                  <option value="Amazon">Amazon</option>
+                  <option value="Apple">Apple</option>
+                  <option value="Facebook">Facebook</option>
+                  <option value="Netflix">Netflix</option>
+                </select>
+              </div>
+            </form>
 
-          <div className="filters-row">
-            <div className="filter-group">
-              <label
+            <div className="actions" style={{ marginBottom: 24 }}>
+              <button
+                className="btn secondary"
+                type="button"
+                onClick={() => window.history.back()}
                 style={{
                   fontSize: sidebarCollapsed ? '1.1rem' : '0.95rem',
-                  transition: 'font-size 0.3s cubic-bezier(.4,0,.2,1)'
-                }}
-              >Job Title</label>
-              <input
-                type="text"
-                value={jobTitle}
-                onChange={e => setJobTitle(e.target.value)}
-                placeholder="e.g. Software Engineer"
-                style={{
-                  fontSize: sidebarCollapsed ? '1.1rem' : '0.95rem',
-                  padding: sidebarCollapsed ? '14px 18px' : '12px 14px',
+                  padding: sidebarCollapsed ? '14px 32px' : '12px 32px',
                   transition: 'font-size 0.3s, padding 0.3s'
                 }}
-              />
-            </div>
-            <div className="filter-group">
-              <label
+              >
+                Back to Interview Hub
+              </button>
+              <button
+                className="btn primary"
+                type="button"
+                onClick={handleAIGenerate}
+                disabled={aiLoading}
                 style={{
                   fontSize: sidebarCollapsed ? '1.1rem' : '0.95rem',
-                  transition: 'font-size 0.3s cubic-bezier(.4,0,.2,1)'
+                  padding: sidebarCollapsed ? '14px 32px' : '12px 32px',
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: 8,
+                  transition: 'font-size 0.3s, padding 0.3s'
                 }}
-              >Industry</label>
-              <AsyncSelect
-                classNamePrefix="custom-select"
-                cacheOptions
-                defaultOptions={[
-                  { value: "technology", label: "Technology" },
-                  { value: "finance", label: "Finance" },
-                  { value: "healthcare", label: "Healthcare" },
-                  { value: "education", label: "Education" },
-                ]}
-                loadOptions={(inputValue, callback) => {
-                  const filtered = [
-                    { value: "technology", label: "Technology" },
-                    { value: "finance", label: "Finance" },
-                    { value: "healthcare", label: "Healthcare" },
-                    { value: "education", label: "Education" },
-                  ].filter(opt =>
-                    opt.label.toLowerCase().includes(inputValue.toLowerCase())
-                  );
-                  callback(filtered);
-                }}
-                onChange={opt => setIndustry(opt?.label || "")}
-                placeholder="Select Industry"
-                styles={{
-                  container: base => ({ ...base, width: '100%' }),
-                  control: base => ({
-                    ...base,
-                    fontSize: sidebarCollapsed ? '1.1rem' : '0.95rem',
-                    minHeight: sidebarCollapsed ? 54 : 48,
-                    transition: 'font-size 0.3s, min-height 0.3s'
-                  }),
-                  singleValue: base => ({
-                    ...base,
-                    fontSize: sidebarCollapsed ? '1.1rem' : '0.95rem',
-                    transition: 'font-size 0.3s'
-                  })
-                }}
-              />
+              >
+                <FaRobot style={{ fontSize: 20 }} />
+                {aiLoading ? 'Generating...' : 'Generate Interview Questions with AI'}
+              </button>
             </div>
-            <div className="filter-group">
-              <label
-                style={{
-                  fontSize: sidebarCollapsed ? '1.1rem' : '0.95rem',
-                  transition: 'font-size 0.3s cubic-bezier(.4,0,.2,1)'
-                }}
-              >Company</label>
-              <AsyncSelect
-                classNamePrefix="custom-select"
-                cacheOptions
-                loadOptions={loadCompanyOptions}
-                defaultOptions
-                onChange={opt => setCompany(opt?.label || "")}
-                placeholder="Select Company"
-                styles={{
-                  container: base => ({ ...base, width: '100%' }),
-                  control: base => ({
-                    ...base,
-                    fontSize: sidebarCollapsed ? '1.1rem' : '0.95rem',
-                    minHeight: sidebarCollapsed ? 54 : 48,
-                    transition: 'font-size 0.3s, min-height 0.3s'
-                  }),
-                  singleValue: base => ({
-                    ...base,
-                    fontSize: sidebarCollapsed ? '1.1rem' : '0.95rem',
-                    transition: 'font-size 0.3s'
-                  })
-                }}
-              />
-            </div>
+            {aiError && <div style={{ color: '#d90429', textAlign: 'center', marginBottom: 12 }}>{aiError}</div>}
+            {questions.length > 0 && (
+              <div style={{ background: 'white', borderRadius: 16, padding: 32, color: '#222', boxShadow: '0 2px 12px rgba(0,0,0,0.08)', margin: '32px 0' }}>
+                <h2 style={{ color: '#003049', fontWeight: 700, marginBottom: 16 }}>AI-Generated Interview Questions</h2>
+                <ol style={{ paddingLeft: 24, fontSize: '1.1rem', lineHeight: 1.7 }}>
+                  {questions.map((q, i) => (
+                    <li key={i} style={{ marginBottom: 12 }}>{q}</li>
+                  ))}
+                </ol>
+              </div>
+            )}
           </div>
-
-          <div className="actions" style={{ marginBottom: 24 }}>
-            <button
-              className="btn secondary"
-              type="button"
-              onClick={() => window.history.back()}
-              style={{
-                fontSize: sidebarCollapsed ? '1.1rem' : '0.95rem',
-                padding: sidebarCollapsed ? '14px 32px' : '12px 32px',
-                transition: 'font-size 0.3s, padding 0.3s'
-              }}
-            >
-              Back to Interview Hub
-            </button>
-            <button
-              className="btn primary"
-              type="button"
-              onClick={handleAIGenerate}
-              disabled={aiLoading}
-              style={{
-                fontSize: sidebarCollapsed ? '1.1rem' : '0.95rem',
-                padding: sidebarCollapsed ? '14px 32px' : '12px 32px',
-                display: 'flex',
-                alignItems: 'center',
-                gap: 8,
-                transition: 'font-size 0.3s, padding 0.3s'
-              }}
-            >
-              <FaRobot style={{ fontSize: 20 }} />
-              {aiLoading ? 'Generating...' : 'Generate Interview Questions with AI'}
-            </button>
-          </div>
-          {aiError && <div style={{ color: '#d90429', textAlign: 'center', marginBottom: 12 }}>{aiError}</div>}
-          {questions.length > 0 && (
-            <div style={{ background: 'white', borderRadius: 16, padding: 32, color: '#222', boxShadow: '0 2px 12px rgba(0,0,0,0.08)', margin: '32px 0' }}>
-              <h2 style={{ color: '#003049', fontWeight: 700, marginBottom: 16 }}>AI-Generated Interview Questions</h2>
-              <ol style={{ paddingLeft: 24, fontSize: '1.1rem', lineHeight: 1.7 }}>
-                {questions.map((q, i) => (
-                  <li key={i} style={{ marginBottom: 12 }}>{q}</li>
-                ))}
-              </ol>
-            </div>
-          )}
-        </div>
-      </main>
-
+        </main>
+      </div>
       <Footer />
-    </div>
+    </>
   );
 }
