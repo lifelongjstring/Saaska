@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState, useEffect } from 'react';
+import React, { createContext, useContext, useState, useEffect, useCallback, useMemo } from 'react';
 
 const UserActivityContext = createContext();
 
@@ -74,7 +74,7 @@ export const UserActivityProvider = ({ children }) => {
       .map(([feature]) => feature);
   };
 
-  const addActivity = (type, details = {}) => {
+  const addActivity = useCallback((type, details = {}) => {
     let uniqueId;
     if (typeof crypto !== 'undefined' && crypto.randomUUID) {
       uniqueId = crypto.randomUUID();
@@ -88,43 +88,37 @@ export const UserActivityProvider = ({ children }) => {
       ...details
     };
     setActivities(prev => [newActivity, ...prev.slice(0, 4)]); // Keep last 5 activities
-  };
+  }, []);
 
-  const trackPageVisit = (page) => {
+  const trackPageVisit = useCallback((page) => {
     addActivity('page_visited', { page });
-  };
+  }, [addActivity]);
 
-  const trackResumeCreated = (resumeData) => {
+  const trackResumeCreated = useCallback((resumeData) => {
     addActivity('resume_created', { 
       feature: 'resume_maker',
       resumeData: { title: resumeData.title, template: resumeData.template }
     });
-  };
+  }, [addActivity]);
 
-  const trackCoverLetterGenerated = (letterData) => {
+  const trackCoverLetterGenerated = useCallback((letterData) => {
     addActivity('cover_letter_generated', { 
       feature: 'cover_letter_maker',
-      letterData: { company: letterData.company, position: letterData.position }
+      letterData: { title: letterData.title, template: letterData.template }
     });
-  };
+  }, [addActivity]);
 
-  const trackJobApplied = (jobData) => {
-    addActivity('job_applied', { 
-      feature: 'job_search',
-      jobData: { company: jobData.company, position: jobData.position }
-    });
-  };
+  const trackJobApplied = useCallback((jobData) => {
+    addActivity('job_applied', { feature: 'job_search', jobData });
+  }, [addActivity]);
 
-  const trackInterviewPracticed = (interviewData) => {
-    addActivity('interview_practiced', { 
-      feature: 'interview_practice',
-      interviewData: { industry: interviewData.industry, position: interviewData.position }
-    });
-  };
+  const trackInterviewPracticed = useCallback((interviewData) => {
+    addActivity('interview_practiced', { feature: 'interview_practice', interviewData });
+  }, [addActivity]);
 
-  const trackTimeSpent = (feature, duration) => {
+  const trackTimeSpent = useCallback((feature, duration) => {
     addActivity('time_spent', { feature, duration });
-  };
+  }, [addActivity]);
 
   const getRecentActivities = (limit = 5) => {
     return activities.slice(0, limit);
@@ -142,10 +136,10 @@ export const UserActivityProvider = ({ children }) => {
     setActivities([]);
   };
 
-  const value = {
+  // Memoize context value
+  const value = useMemo(() => ({
     activities,
     stats,
-    addActivity,
     trackPageVisit,
     trackResumeCreated,
     trackCoverLetterGenerated,
@@ -156,7 +150,7 @@ export const UserActivityProvider = ({ children }) => {
     getActivityByType,
     getActivityByFeature,
     clearActivities
-  };
+  }), [activities, stats, trackPageVisit, trackResumeCreated, trackCoverLetterGenerated, trackJobApplied, trackInterviewPracticed, trackTimeSpent]);
 
   return (
     <UserActivityContext.Provider value={value}>
