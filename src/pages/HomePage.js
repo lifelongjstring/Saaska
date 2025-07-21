@@ -1,5 +1,29 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import FeatureCard from "../components/FeatureCard";
+
+const features = [
+  {
+    img: "images/index/u14.png",
+    title: "Resumes & Cover Letters",
+    desc: "Create professional documents that get you noticed by employers"
+  },
+  {
+    img: "images/index/u15.png",
+    title: "Search & Apply Jobs",
+    desc: "Find and apply to the best opportunities in your field"
+  },
+  {
+    img: "images/index/u16.png",
+    title: "Practice Interviews",
+    desc: "Prepare for your interviews with our AI-powered simulator"
+  },
+  {
+    img: "images/index/u17.png",
+    title: "Track Applications",
+    desc: "Manage all your job applications in one place"
+  }
+];
 
 /**
  * HomePage component displays the landing page with hero, features, and navigation.
@@ -21,5 +45,14 @@ export default function HomePage() {
     }
   };
 
-  // ... (rest of the code remains unchanged)
+  return (
+    <div>
+      {/* ...other homepage content... */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 w-full">
+        {features.map((feature, idx) => (
+          <FeatureCard key={idx} {...feature} />
+        ))}
+      </div>
+    </div>
+  );
 } 

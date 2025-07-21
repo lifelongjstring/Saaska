@@ -188,6 +188,7 @@ export default function DashboardPage() {
         </div>
       </main>
 
+      {/* <Footer /> Removed for scrollable dashboard */}
     </div>
   );
 }

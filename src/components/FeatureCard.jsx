@@ -11,7 +11,7 @@ import React from "react";
  */
 export default function FeatureCard({ img, title, desc }) {
   return (
-    <div className="feature-card">
+    <div className="feature-card w-full">
       <img src={img} alt={title} />
       <h3>{title}</h3>
       <p>{desc}</p>

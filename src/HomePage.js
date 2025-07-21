@@ -1,9 +1,9 @@
+
 import React, { useState, useEffect } from "react";
 import { useNavigate, Navigate } from "react-router-dom";
 import Header from "./components/Header";
 import "./App.css";
 import { useUserActivity } from "./contexts/UserActivityContext";
-import './styles/home-mobile.css';
 
 export default function HomePage() {
   const [selectedService, setSelectedService] = useState("dashboard");
@@ -64,38 +64,32 @@ export default function HomePage() {
       </section>
 
       {/* Features Section */}
-      <section className="features flex flex-wrap justify-center gap-4 px-2 py-6 text-white">
-        <a href="/resume" className="feature-card text-center p-4 bg-white bg-opacity-10 rounded-lg shadow-md w-64 text-white">
-          <i className="fas fa-file-alt text-4xl mb-3 text-white"></i>
-          <h3 className="text-xl font-semibold mb-1 text-white">Resumes & Cover Letters</h3>
-          <p className="text-white">Create professional documents that get you noticed by employers</p>
+      <section className="features w-full max-w-7xl mx-auto flex flex-nowrap md:flex-nowrap flex-wrap gap-6 px-2 py-6">
+        <a href="/resume" className="feature-card flex-1 min-w-[200px] min-h-[220px] flex flex-col items-center justify-center text-center p-6 bg-white bg-opacity-10 rounded-lg shadow-md text-white transition-transform hover:scale-105">
+          <i className="fas fa-file-alt text-4xl mb-3"></i>
+          <h3 className="text-xl font-semibold mb-1">Resumes & Cover Letters</h3>
+          <p>Create professional documents that get you noticed by employers</p>
         </a>
-
-        <a href="/job-search" className="feature-card text-center p-4 bg-white bg-opacity-10 rounded-lg shadow-md w-64 text-white">
-          <i className="fas fa-city text-4xl mb-3 text-white"></i>
-          <h3 className="text-xl font-semibold mb-1 text-white">Search & Apply for Jobs</h3>
-          <p className="text-white">Find and apply to the best opportunities in your field</p>
+        <a href="/job-search" className="feature-card flex-1 min-w-[200px] min-h-[220px] flex flex-col items-center justify-center text-center p-6 bg-white bg-opacity-10 rounded-lg shadow-md text-white transition-transform hover:scale-105">
+          <i className="fas fa-city text-4xl mb-3"></i>
+          <h3 className="text-xl font-semibold mb-1">Search & Apply for Jobs</h3>
+          <p>Find and apply to the best opportunities in your field</p>
         </a>
-
-        <a href="/interviews" className="feature-card text-center p-4 bg-white bg-opacity-10 rounded-lg shadow-md w-64 text-white">
-          <i className="fas fa-lightbulb text-4xl mb-3 text-white"></i>
-          <h3 className="text-xl font-semibold mb-1 text-white">Practice Interviews</h3>
-          <p className="text-white">Prepare for your interviews with our AI-powered simulator</p>
+        <a href="/interviews" className="feature-card flex-1 min-w-[200px] min-h-[220px] flex flex-col items-center justify-center text-center p-6 bg-white bg-opacity-10 rounded-lg shadow-md text-white transition-transform hover:scale-105">
+          <i className="fas fa-lightbulb text-4xl mb-3"></i>
+          <h3 className="text-xl font-semibold mb-1">Practice Interviews</h3>
+          <p>Prepare for your interviews with our AI-powered simulator</p>
         </a>
-
-        <a href="/applications" className="feature-card text-center p-4 bg-white bg-opacity-10 rounded-lg shadow-md w-64 text-white">
-          <i className="fas fa-briefcase text-4xl mb-3 text-white"></i>
-          <h3 className="text-xl font-semibold mb-1 text-white">Track Applications</h3>
-          <p className="text-white">Manage all your job applications in one place</p>
+        <a href="/applications" className="feature-card flex-1 min-w-[200px] min-h-[220px] flex flex-col items-center justify-center text-center p-6 bg-white bg-opacity-10 rounded-lg shadow-md text-white transition-transform hover:scale-105">
+          <i className="fas fa-briefcase text-4xl mb-3"></i>
+          <h3 className="text-xl font-semibold mb-1">Track Applications</h3>
+          <p>Manage all your job applications in one place</p>
         </a>
       </section>
 
 
 
       {/* Footer */}
-      <div className="homepage-footer mt-4 text-center text-sm text-white/80">
-  © 2025 SaaSka Software, Inc. All rights reserved.
-</div>
 </div>
   );
 }

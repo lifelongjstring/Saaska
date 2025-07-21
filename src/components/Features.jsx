@@ -31,20 +31,22 @@ const features = [
  */
 const Features = () => {
   return (
-    <section className="features">
-      {features.map((feature, idx) => (
-        /**
-         * Render a single FeatureCard.
-         * @param {Object} feature - The feature object.
-         * @param {string} feature.img - The image source for the feature.
-         * @param {string} feature.title - The title of the feature.
-         * @param {string} feature.desc - The description of the feature.
-         * @param {number} idx - The index of the feature in the array.
-         * @returns {JSX.Element} The rendered FeatureCard.
-         * @precondition feature must be a valid feature object.
-         */
-        <FeatureCard key={idx} {...feature} />
-      ))}
+    <section className="features p-0 m-0 w-full" style={{padding: 0, margin: 0, width: '100vw', maxWidth: '100vw'}}>
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 w-full" style={{width: '100vw', maxWidth: '100vw'}}>
+        {features.map((feature, idx) => (
+          /**
+           * Render a single FeatureCard.
+           * @param {Object} feature - The feature object.
+           * @param {string} feature.img - The image source for the feature.
+           * @param {string} feature.title - The title of the feature.
+           * @param {string} feature.desc - The description of the feature.
+           * @param {number} idx - The index of the feature in the array.
+           * @returns {JSX.Element} The rendered FeatureCard.
+           * @precondition feature must be a valid feature object.
+           */
+          <FeatureCard key={idx} {...feature} />
+        ))}
+      </div>
     </section>
   );
 };
