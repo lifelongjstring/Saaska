@@ -132,7 +132,6 @@ export default function InterviewQuestionsPage() {
 
             <div className="flex justify-center items-center min-h-[60vh]">
               <form className="w-full max-w-2xl bg-white/95 rounded-2xl shadow-xl p-8 border border-gray-100">
-
                 <div className="flex flex-col md:flex-row gap-6 mb-8">
                   <div className="flex-1 min-w-0">
                     <label className="block font-semibold mb-2 !text-black" style={{ color: '#000' }}>Job Title</label>

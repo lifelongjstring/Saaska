@@ -20,13 +20,13 @@ export default function PersonalInfoForm({ form, handleChange }) {
       <fieldset style={{ border: 'none', padding: 0, margin: 0 }}>
         <div style={{ display: 'flex', gap: 16, marginBottom: 18 }}>
           <div style={{ flex: 1 }}>
-            <label style={{ fontWeight: 600, fontSize: 14, marginBottom: 4, display: 'block' }}>First name</label>
+            <label style={{ fontWeight: 600, fontSize: 14, marginBottom: 4, display: 'block', color: '#000' }}>First name</label>
             <div style={{ position: 'relative' }}>
               <input name="name" type="text" value={form.name} onChange={handleChange} required placeholder="John" style={inputStyle} />
             </div>
           </div>
           <div style={{ flex: 1 }}>
-            <label style={{ fontWeight: 600, fontSize: 14, marginBottom: 4, display: 'block' }}>Last name</label>
+            <label style={{ fontWeight: 600, fontSize: 14, marginBottom: 4, display: 'block', color: '#000' }}>Last name</label>
             <div style={{ position: 'relative' }}>
               <input name="lastName" type="text" value={form.lastName || ''} onChange={handleChange} placeholder="Smith" style={inputStyle} />
             </div>
@@ -34,7 +34,7 @@ export default function PersonalInfoForm({ form, handleChange }) {
         </div>
         <div style={{ display: 'flex', gap: 16, alignItems: 'flex-end', marginBottom: 18 }}>
           <div style={{ flex: 2 }}>
-            <label style={{ fontWeight: 600, fontSize: 14, marginBottom: 4, display: 'block' }}>Job title</label>
+            <label style={{ fontWeight: 600, fontSize: 14, marginBottom: 4, display: 'block', color: '#000' }}>Job title</label>
             <div style={{ position: 'relative' }}>
               <input name="jobTitle" type="text" value={form.jobTitle} onChange={handleChange} placeholder="Product Designer" style={inputStyle} />
             </div>
@@ -53,14 +53,14 @@ export default function PersonalInfoForm({ form, handleChange }) {
           <span style={{ fontWeight: 500 }}>Show additional details</span>
         </button>
         {showDetails && (
-          <div style={{ marginTop: 18, background: '#f8fafc', borderRadius: 8, padding: 18 }}>
-            <label style={{ fontWeight: 600, fontSize: 14, marginBottom: 4, display: 'block' }}>Your email address</label>
+          <div style={{ marginTop: 18, background: '#f8fafc', borderRadius: 8, padding: 18, color: '#000' }}>
+            <label style={{ fontWeight: 600, fontSize: 14, marginBottom: 4, display: 'block', color: '#000' }}>Your email address</label>
             <input name="email" type="email" value={form.email} onChange={handleChange} required placeholder="john@email.com" style={inputStyle} />
-            <label style={{ fontWeight: 600, fontSize: 14, marginBottom: 4, display: 'block', marginTop: 12 }}>Your phone number</label>
+            <label style={{ fontWeight: 600, fontSize: 14, marginBottom: 4, display: 'block', marginTop: 12, color: '#000' }}>Your phone number</label>
             <input name="phone" type="tel" value={form.phone} onChange={handleChange} required placeholder="(555) 555-5555" style={inputStyle} />
-            <label style={{ fontWeight: 600, fontSize: 14, marginBottom: 4, display: 'block', marginTop: 12 }}>City & State</label>
+            <label style={{ fontWeight: 600, fontSize: 14, marginBottom: 4, display: 'block', marginTop: 12, color: '#000' }}>City & State</label>
             <input name="location" type="text" value={form.location} onChange={handleChange} required placeholder="San Francisco, CA" style={inputStyle} />
-            <label style={{ fontWeight: 600, fontSize: 14, marginBottom: 4, display: 'block', marginTop: 12 }}>A brief professional summary</label>
+            <label style={{ fontWeight: 600, fontSize: 14, marginBottom: 4, display: 'block', marginTop: 12, color: '#000' }}>A brief professional summary</label>
             <textarea name="summary" value={form.summary} onChange={handleChange} placeholder="Professional summary..." style={{ ...inputStyle, minHeight: 80, resize: 'vertical' }} />
           </div>
         )}

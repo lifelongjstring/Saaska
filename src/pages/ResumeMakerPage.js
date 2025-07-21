@@ -192,7 +192,7 @@ export default function ResumeMakerPage() {
               </nav>
             </aside>
             {/* Main Card Content */}
-            <div style={{ flex: 1, maxWidth: 600, background: '#fff', borderRadius: 20, boxShadow: '0 4px 32px rgba(70,196,224,0.10)', padding: '40px 36px 32px 36px', margin: '0 auto', position: 'relative', zIndex: 1, color: '#000' }}>
+            <div style={{ flex: 1, maxWidth: 800, background: '#fff', borderRadius: 20, boxShadow: '0 4px 32px rgba(70,196,224,0.10)', padding: '48px 48px 40px 48px', margin: '0 auto', position: 'relative', zIndex: 1, color: '#000' }}>
               <form className="resume-form" onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '2.5rem', padding: 0, maxWidth: '100%', margin: 0, position: 'relative', zIndex: 1 }}>
                 {steps[currentStep].component}
                 <div className="button-row" style={{ marginTop: '2rem', display: 'flex', gap: '1rem', justifyContent: 'flex-end' }}>
