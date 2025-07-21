@@ -1,5 +1,6 @@
 .dashboard-page-wrapper {
     display: flex;
+    flex-direction: column;
     margin: 0 auto;
   }
   
@@ -13,7 +14,7 @@
   }
   
   .container {
-    flex: 0.8;
+    flex: 1 1 auto;
     background: linear-gradient(
         to right bottom,
         #46c4e0 10%,
@@ -27,12 +28,12 @@
     width: 80%;
     margin-left: 0px;
     margin-right: auto;
-
-    min-height: auto;
-    max-height: calc(100vh - 140px);
+    /* Remove restrictive height/overflow */
+    min-height: unset;
+    max-height: unset;
+    overflow-y: unset;
     display: flex;
     flex-direction: column;
-    overflow-y: auto;
     transition: margin 0.3s ease, width 0.3s ease;
     color: #333;
     border: 1px solid rgba(255, 255, 255, 0.3);
@@ -355,10 +356,14 @@
 }
 
 .main-content {
-  position: relative;
-  left: -80px;
-  min-height: calc(100vh - 60px);
-  transition: margin-left 0.3s cubic-bezier(.4,0,.2,1);
+    position: relative;
+    left: -80px;
+    /* Remove min-height restriction */
+    min-height: unset;
+    padding: clamp(8px, 2vw, 32px) 0;
+    transition: margin-left 0.3s cubic-bezier(.4,0,.2,1);
+    width: 100%;
+    box-sizing: border-box;
 }
 .main-content.collapsed {
   margin-left: 70px;
