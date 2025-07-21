@@ -512,3 +512,13 @@ footer {
   position: relative;
   left: -80px;
 }
+
+.resume-section-title {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: #003049;
+  margin-bottom: 1.2rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
