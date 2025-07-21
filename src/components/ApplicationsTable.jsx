@@ -75,6 +75,7 @@ function ApplicationsTable() {
       enablePagination={false}
       enableRowVirtualization
       muiTableContainerProps={{ sx: { maxHeight: '600px' } }}
+      PaperProps={{ sx: { margin: '0 auto' } }}
       renderBottomToolbarCustomActions={() => (
         <Typography>
           Showing {applications.length} application{applications.length !== 1 ? 's' : ''}.
