@@ -68,10 +68,9 @@ export default function CoverLetterMakerPage() {
     <div className="cover-letter-maker-wrapper">
       <ActivityTracker feature="cover_letter_maker" pageName="Cover Letter Maker" />
       <Sidebar />
-      <main className="cover-letter-maker-content">
-        <div className="cover-letter-maker-gradient-box">
-          <h1 style={{ color: 'black', fontWeight: 700, fontSize: '2rem', marginBottom: '1.5rem', textAlign: 'center' }}>Create Your Cover Letter</h1>
-          <form className="resume-form" onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem', padding: '2rem', maxWidth: 800, margin: 'auto' }}>
+      <main className="cover-letter-maker-content" style={{ color: '#000', background: 'linear-gradient(135deg, #ffe5b4 0%, #b4e0ff 100%)', minHeight: '100vh', borderRadius: '24px' }}>
+        <h1 style={{ color: 'black', fontWeight: 700, fontSize: '2rem', marginBottom: '1.5rem', textAlign: 'center' }}>Create Your Cover Letter</h1>
+        <form className="resume-form" onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem', padding: '2rem', maxWidth: 800, margin: 'auto' }}>
               <h2>Personal Information</h2>
               <label className="field-label">Your full name</label>
               <input name="name" type="text" value={form.name} onChange={handleChange} required />
@@ -95,8 +94,7 @@ export default function CoverLetterMakerPage() {
                 <button type="button" className="download-btn" onClick={handleDownload}>Download as PDF</button>
               </div>
               {saved && <div style={{ color: '#28a745', fontWeight: 600 }}>Cover letter saved! (Not yet persistent)</div>}
-          </form>
-        </div>
+        </form>
       </main>
       <Footer />
     </div>
