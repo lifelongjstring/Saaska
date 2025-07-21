@@ -8,6 +8,10 @@ import { FaRobot } from 'react-icons/fa';
 import { useNavigate } from "react-router-dom";
 import { useUserActivity } from "../contexts/UserActivityContext";
 import ActivityTracker from "../components/ActivityTracker";
+import PersonalInfoForm from '../components/PersonalInfoForm';
+import WorkExperienceForm from '../components/WorkExperienceForm';
+import EducationForm from '../components/EducationForm';
+import SkillsForm from '../components/SkillsForm';
 
 /**
  * ResumeMakerPage component allows users to create a new resume with a modern, glassy form.
@@ -119,58 +123,60 @@ export default function ResumeMakerPage() {
       <div className="resume-maker-wrapper">
         <ActivityTracker feature="resume_maker" pageName="Resume Maker" />
         <Sidebar />
-        <main className="resume-maker-content" style={{ color: '#000', background: 'linear-gradient(135deg, #ffe5b4 0%, #b4e0ff 100%)', minHeight: '100vh', borderRadius: '24px' }}>
-          <h1 style={{ color: 'black', fontWeight: 700, fontSize: '2rem', marginBottom: '1.5rem', textAlign: 'center' }}>Create Your Resume</h1>
-          <form className="resume-form" onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem', padding: '2rem', maxWidth: 800, margin: 'auto' }}>
-              <h2>Personal Information</h2>
-              <label className="field-label">Your full name</label>
-              <input name="name" type="text" value={form.name} onChange={handleChange} required />
-              <label className="field-label">Your email address</label>
-              <input name="email" type="email" value={form.email} onChange={handleChange} required />
-              <label className="field-label">Your phone number</label>
-              <input name="phone" type="tel" value={form.phone} onChange={handleChange} required />
-              <label className="field-label">City & State</label>
-              <input name="location" type="text" value={form.location} onChange={handleChange} required />
-              <label className="field-label">A brief professional summary</label>
-              <textarea name="summary" value={form.summary} onChange={handleChange} />
-
-              <h2>Work Experience</h2>
-              <label className="field-label">Most recent job title</label>
-              <input name="jobTitle" type="text" value={form.jobTitle} onChange={handleChange} />
-              <label className="field-label">Company name</label>
-              <input name="company" type="text" value={form.company} onChange={handleChange} />
-              <label className="field-label">What did you do in this role?</label>
-              <textarea name="workDesc" value={form.workDesc} onChange={handleChange} />
-
-              <h2>Education</h2>
-              <label className="field-label">School or university name</label>
-              <input name="school" type="text" value={form.school} onChange={handleChange} />
-              <label className="field-label">Degree or qualification</label>
-              <input name="degree" type="text" value={form.degree} onChange={handleChange} />
-              <label className="field-label">Additional notes (optional)</label>
-              <textarea name="eduDesc" value={form.eduDesc} onChange={handleChange} />
-
-              <h2>Skills</h2>
-              <label className="field-label">List your key skills (comma separated)</label>
-              <input name="skills" type="text" value={form.skills} onChange={handleChange} />
-
-              <div className="button-row" style={{ marginTop: '2rem', display: 'flex', gap: '1rem' }}>
-                <button type="submit" className="submit-btn">Save Resume</button>
-                <button type="button" className="download-btn" onClick={handleDownload}>Download as PDF</button>
-              </div>
-              <button
-                type="button"
-                className="download-btn"
-                style={{ margin: '1.5rem auto 0 auto', display: 'flex', alignItems: 'center', gap: 8, fontWeight: 700, fontSize: '1.1rem', background: '#46c4e0', color: '#003049', border: 'none', borderRadius: 8, padding: '12px 28px', boxShadow: '0 2px 8px rgba(70,196,224,0.12)', cursor: aiLoading ? 'not-allowed' : 'pointer', opacity: aiLoading ? 0.7 : 1 }}
-                onClick={handleAIGenerate}
-                disabled={aiLoading}
-                title="Generate resume content with AI"
-              >
-                <FaRobot style={{ fontSize: 22 }} />
-                {aiLoading ? 'Generating...' : 'Generate Resume with AI'}
-              </button>
-              {aiError && <div style={{ color: '#d90429', textAlign: 'center', marginBottom: 12 }}>{aiError}</div>}
-              {saved && <div style={{ color: '#28a745', fontWeight: 600 }}>Resume saved! (Not yet persistent)</div>}
+        <main className="resume-maker-content" style={{ color: '#000', background: 'linear-gradient(135deg, #ffe5b4 0%, #b4e0ff 100%)', minHeight: '100vh', borderRadius: '24px', position: 'relative', overflow: 'hidden' }}>
+          {/* Decorative SVG background flourish */}
+          <svg width="480" height="320" viewBox="0 0 480 320" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ position: 'absolute', top: -60, left: -80, zIndex: 0, opacity: 0.18 }}>
+            <ellipse cx="240" cy="160" rx="220" ry="120" fill="#b4e0ff" />
+            <ellipse cx="340" cy="100" rx="90" ry="60" fill="#ffe5b4" />
+          </svg>
+          <h1 style={{ color: 'black', fontWeight: 700, fontSize: '2rem', marginBottom: '1.5rem', textAlign: 'center', position: 'relative', zIndex: 1 }}>Create Your Resume</h1>
+          {/* Progress Stepper */}
+          <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: 32, marginBottom: 32 }}>
+            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+              <span style={{ fontSize: 28, background: '#ffe5b4', borderRadius: '50%', width: 40, height: 40, display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: 4 }}>👤</span>
+              <span style={{ fontSize: 13, color: '#333' }}>Personal</span>
+            </div>
+            <div style={{ width: 40, height: 4, background: 'linear-gradient(90deg, #ffe5b4 0%, #b4e0ff 100%)', borderRadius: 2 }} />
+            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+              <span style={{ fontSize: 28, background: '#ffe5b4', borderRadius: '50%', width: 40, height: 40, display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: 4 }}>💼</span>
+              <span style={{ fontSize: 13, color: '#333' }}>Work</span>
+            </div>
+            <div style={{ width: 40, height: 4, background: 'linear-gradient(90deg, #ffe5b4 0%, #b4e0ff 100%)', borderRadius: 2 }} />
+            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+              <span style={{ fontSize: 28, background: '#ffe5b4', borderRadius: '50%', width: 40, height: 40, display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: 4 }}>🎓</span>
+              <span style={{ fontSize: 13, color: '#333' }}>Education</span>
+            </div>
+            <div style={{ width: 40, height: 4, background: 'linear-gradient(90deg, #ffe5b4 0%, #b4e0ff 100%)', borderRadius: 2 }} />
+            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+              <span style={{ fontSize: 28, background: '#ffe5b4', borderRadius: '50%', width: 40, height: 40, display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: 4 }}>✨</span>
+              <span style={{ fontSize: 13, color: '#333' }}>Skills</span>
+            </div>
+          </div>
+          <form className="resume-form" onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '2.5rem', padding: '2rem', maxWidth: 800, margin: 'auto', position: 'relative', zIndex: 1 }}>
+            <PersonalInfoForm form={form} handleChange={handleChange} />
+            <div style={{ height: 2, background: 'linear-gradient(90deg, #ffe5b4 0%, #b4e0ff 100%)', borderRadius: 2, margin: '1.5rem 0' }} />
+            <WorkExperienceForm form={form} handleChange={handleChange} />
+            <div style={{ height: 2, background: 'linear-gradient(90deg, #ffe5b4 0%, #b4e0ff 100%)', borderRadius: 2, margin: '1.5rem 0' }} />
+            <EducationForm form={form} handleChange={handleChange} />
+            <div style={{ height: 2, background: 'linear-gradient(90deg, #ffe5b4 0%, #b4e0ff 100%)', borderRadius: 2, margin: '1.5rem 0' }} />
+            <SkillsForm form={form} handleChange={handleChange} />
+            <div className="button-row" style={{ marginTop: '2rem', display: 'flex', gap: '1rem' }}>
+              <button type="submit" className="submit-btn">Save Resume</button>
+              <button type="button" className="download-btn" onClick={handleDownload}>Download as PDF</button>
+            </div>
+            <button
+              type="button"
+              className="download-btn"
+              style={{ margin: '1.5rem auto 0 auto', display: 'flex', alignItems: 'center', gap: 8, fontWeight: 700, fontSize: '1.1rem', background: '#46c4e0', color: '#003049', border: 'none', borderRadius: 8, padding: '12px 28px', boxShadow: '0 2px 8px rgba(70,196,224,0.12)', cursor: aiLoading ? 'not-allowed' : 'pointer', opacity: aiLoading ? 0.7 : 1 }}
+              onClick={handleAIGenerate}
+              disabled={aiLoading}
+              title="Generate resume content with AI"
+            >
+              <FaRobot style={{ fontSize: 22 }} />
+              {aiLoading ? 'Generating...' : 'Generate Resume with AI'}
+            </button>
+            {aiError && <div style={{ color: '#d90429', textAlign: 'center', marginBottom: 12 }}>{aiError}</div>}
+            {saved && <div style={{ color: '#28a745', fontWeight: 600 }}>Resume saved! (Not yet persistent)</div>}
           </form>
         </main>
       </div>
