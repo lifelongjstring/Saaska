@@ -72,37 +72,6 @@ export default function JobSearchPage() {
     }
   };
 
-  const searchJobsGitHub = async (keyword, city, page = 1) => {
-    try {
-      const query = keyword || 'jobs';
-      const location = city || '';
-
-      const url = `https://jobs.github.com/positions.json?search=${encodeURIComponent(query)}&location=${encodeURIComponent(location)}&page=${page}`;
-
-      const response = await fetch(url);
-      const data = await response.json();
-
-      if (data && data.length > 0) {
-        const jobs = data.map(job => ({
-          title: job.title || "Job Title Not Available",
-          company: job.company || "Company Not Available",
-          location: job.location || "Location Not Available",
-          description: job.description || "Description Not Available",
-          url: job.url || null
-        }));
-
-        return {
-          jobs,
-          totalPages: Math.ceil(data.length / 10),
-          totalResults: data.length
-        };
-      }
-      return { jobs: [], totalPages: 1, totalResults: 0 };
-    } catch (err) {
-      console.error("Error fetching GitHub jobs:", err);
-      return { jobs: [], totalPages: 1, totalResults: 0 };
-    }
-  };
 
   const handleSearch = async (page = 1) => {
     setIsLoading(true);
@@ -132,16 +101,6 @@ export default function JobSearchPage() {
         console.log('Adzuna API failed, trying GitHub Jobs');
       }
 
-      if (!realJobs || realJobs.length === 0) {
-        try {
-          const result = await searchJobsGitHub(keyword, city, page);
-          realJobs = result.jobs;
-          pages = result.totalPages;
-          total = result.totalResults;
-        } catch (err) {
-          console.log('GitHub Jobs API also failed');
-        }
-      }
 
       if (realJobs && realJobs.length > 0) {
         setFilteredJobs(realJobs);
