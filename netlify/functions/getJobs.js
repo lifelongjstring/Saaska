@@ -1,4 +1,4 @@
-export async function handler() {
+exports.handler = async function(event, context) {
     const appID = process.env.ADZUNA_APP_ID;
     const appKey = process.env.ADZUNA_APP_KEY;
 
