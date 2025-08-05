@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import Sidebar from "../components/Sidebar";
 import Footer from "../components/Footer";
 import "../App";
@@ -14,6 +15,7 @@ import MobileDrawer from "../components/MobileDrawer";
  * @precondition Should be used within a React Router context.
  */
 export default function JobSearchPage() {
+  const navigate = useNavigate();
   const [city, setCity] = useState("");
   const [keyword, setKeyword] = useState("");
   const [filteredJobs, setFilteredJobs] = useState([]);
@@ -393,17 +395,17 @@ export default function JobSearchPage() {
   return (
     <div className="resume-page-wrapper">
       {/* Hamburger for mobile */}
-      {isMobile && !drawerOpen && (
+      {isMobile && (
         <button
           className="hamburger-btn"
-          aria-label="Open sidebar menu"
+          aria-label={drawerOpen ? "Close sidebar menu" : "Open sidebar menu"}
           aria-expanded={drawerOpen}
-          onClick={() => setDrawerOpen(true)}
+          onClick={() => setDrawerOpen(!drawerOpen)}
           style={{
             position: "fixed",
             top: 12,
             left: 12,
-            zIndex: 2001,
+            zIndex: 2003,
             background: "none",
             border: "none",
             fontSize: 28,
@@ -417,7 +419,36 @@ export default function JobSearchPage() {
             boxShadow: "0 2px 8px rgba(0,0,0,0.12)",
           }}
         >
-          ☰
+          <span style={{ display: "inline-block", width: 28, height: 28 }}>
+            {drawerOpen ? (
+              <svg
+                viewBox="0 0 24 24"
+                width="28"
+                height="28"
+                fill="currentColor"
+              >
+                <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z" />
+              </svg>
+            ) : (
+              <svg viewBox="0 0 100 80" width="28" height="28">
+                <rect width="100" height="12" rx="6" fill="currentColor" />
+                <rect
+                  y="30"
+                  width="100"
+                  height="12"
+                  rx="6"
+                  fill="currentColor"
+                />
+                <rect
+                  y="60"
+                  width="100"
+                  height="12"
+                  rx="6"
+                  fill="currentColor"
+                />
+              </svg>
+            )}
+          </span>
         </button>
       )}
 
@@ -433,150 +464,461 @@ export default function JobSearchPage() {
       )}
 
       <main className="main-content">
-        <div className="container">
-          {/* Breadcrumbs */}
-          <nav className="breadcrumbs">
-            <span className="breadcrumb-item">
-              <i className="fas fa-home"></i> Home
-            </span>
-            <span className="breadcrumb-separator">/</span>
-            <span className="breadcrumb-item active">Job Search</span>
-          </nav>
-
-          <h1>Search for Jobs</h1>
-
-          <div className="job-search-form">
-            <input
-              type="text"
-              placeholder="Location (City, Province, or Remote)"
-              value={city}
-              onChange={(e) => setCity(e.target.value)}
-              style={{ minWidth: 0 }}
-            />
-            <input
-              type="text"
-              placeholder="Job title, company, or keywords"
-              value={keyword}
-              onChange={(e) => setKeyword(e.target.value)}
-              style={{ minWidth: 0 }}
-            />
-            <button onClick={() => handleSearch(1)} disabled={isLoading}>
-              <i className="fas fa-search"></i>
-              <span>Search</span>
-            </button>
-          </div>
-
-          {error && (
-            <div
-              style={{
-                padding: "10px",
-                margin: "10px 0",
-                backgroundColor: "#fff3cd",
-                border: "1px solid #ffeaa7",
-                borderRadius: "4px",
-                color: "#856404",
-              }}
-            >
-              {error}
+        {/* Mobile: Ultra-clean streamlined experience */}
+        {isMobile ? (
+          <div className="ultra-clean-mobile-dashboard">
+            {/* Greeting Section */}
+            <div className="mobile-greeting-card">
+              <div className="greeting-content">
+                <h2 className="greeting-title">Find Your Dream Job</h2>
+                <p className="greeting-subtitle">
+                  {searchPerformed
+                    ? `Found ${totalResults} opportunities`
+                    : "Ready to discover amazing opportunities?"}
+                </p>
+              </div>
             </div>
-          )}
 
-          {/* Search Results Info */}
-          {searchPerformed && (
-            <div className="search-results-info">
-              <p>
-                Showing {filteredJobs.length} of {totalResults} results
-                {totalPages > 1 && ` (Page ${currentPage} of ${totalPages})`}
-              </p>
-            </div>
-          )}
-
-          <div className="job-listing">
-            {filteredJobs.length === 0 && !isLoading ? (
-              <p>Enter search terms and click "Search" to find jobs.</p>
-            ) : (
-              filteredJobs.map((job, index) => (
-                <div key={index} className="job-card">
-                  <div className="job-info">
-                    <h3>{job.title}</h3>
-                    <p className="company">{job.company}</p>
-                    <p className="location">
-                      <i className="fas fa-map-marker-alt"></i> {job.location}
-                    </p>
-                    <p className="description">{job.description}</p>
-                  </div>
-                  <div
-                    style={{
-                      display: "flex",
-                      flexDirection: "column",
-                      gap: "0.5rem",
-                    }}
-                  >
-                    <button
-                      className="job-action"
-                      onClick={() => handleViewJob(job)}
-                    >
-                      View
-                    </button>
-                    <button
-                      className="job-action"
-                      style={{ background: "#0077b6", color: "white" }}
-                      onClick={() => handleOpenApplyModal(job)}
-                    >
-                      Apply
-                    </button>
-                  </div>
+            {/* Stats Cards - Job Search Metrics */}
+            <div className="clean-stats-section">
+              <div className="clean-stats-row">
+                <div className="clean-stat-item">
+                  <div className="clean-stat-number">{filteredJobs.length}</div>
+                  <div className="clean-stat-label">Results</div>
                 </div>
-              ))
-            )}
-          </div>
+                <div className="clean-stat-item">
+                  <div className="clean-stat-number">{currentPage}</div>
+                  <div className="clean-stat-label">Page</div>
+                </div>
+              </div>
+              <div className="clean-stats-row">
+                <div className="clean-stat-item">
+                  <div className="clean-stat-number">{city ? "1" : "0"}</div>
+                  <div className="clean-stat-label">Location</div>
+                </div>
+                <div className="clean-stat-item">
+                  <div className="clean-stat-number">{keyword ? "1" : "0"}</div>
+                  <div className="clean-stat-label">Keywords</div>
+                </div>
+              </div>
+            </div>
 
-          {/* Pagination */}
-          {totalPages > 1 && (
-            <div className="pagination">
-              <button
-                className="pagination-btn"
-                onClick={() => handlePageChange(currentPage - 1)}
-                disabled={currentPage === 1}
-              >
-                <i className="fas fa-chevron-left"></i> Previous
-              </button>
-
-              <div className="page-numbers">
-                {Array.from({ length: Math.min(5, totalPages) }, (_, i) => {
-                  let pageNum;
-                  if (totalPages <= 5) {
-                    pageNum = i + 1;
-                  } else if (currentPage <= 3) {
-                    pageNum = i + 1;
-                  } else if (currentPage >= totalPages - 2) {
-                    pageNum = totalPages - 4 + i;
-                  } else {
-                    pageNum = currentPage - 2 + i;
-                  }
-
-                  return (
-                    <button
-                      key={pageNum}
-                      className={`page-number ${currentPage === pageNum ? "active" : ""}`}
-                      onClick={() => handlePageChange(pageNum)}
-                    >
-                      {pageNum}
-                    </button>
-                  );
-                })}
+            {/* Primary Actions - Search Form */}
+            <div className="clean-actions-section">
+              <div className="clean-action-card primary-action">
+                <div className="action-icon">📍</div>
+                <div className="action-content" style={{ width: "100%" }}>
+                  <div className="action-title">Location</div>
+                  <input
+                    type="text"
+                    placeholder="City, Province, or Remote"
+                    value={city}
+                    onChange={(e) => setCity(e.target.value)}
+                    style={{
+                      width: "100%",
+                      background: "rgba(255,255,255,0.2)",
+                      border: "1px solid rgba(255,255,255,0.3)",
+                      borderRadius: "8px",
+                      padding: "8px 12px",
+                      color: "white",
+                      fontSize: "0.9rem",
+                      marginTop: "4px",
+                    }}
+                  />
+                </div>
               </div>
 
+              <div className="clean-action-card secondary-action">
+                <div className="action-icon">💼</div>
+                <div className="action-content" style={{ width: "100%" }}>
+                  <div className="action-title">Job Search</div>
+                  <input
+                    type="text"
+                    placeholder="Job title, company, or keywords"
+                    value={keyword}
+                    onChange={(e) => setKeyword(e.target.value)}
+                    style={{
+                      width: "100%",
+                      background: "rgba(255,255,255,0.2)",
+                      border: "1px solid rgba(255,255,255,0.3)",
+                      borderRadius: "8px",
+                      padding: "8px 12px",
+                      color: "white",
+                      fontSize: "0.9rem",
+                      marginTop: "4px",
+                    }}
+                  />
+                </div>
+              </div>
+            </div>
+
+            {/* Search Button */}
+            <div style={{ marginBottom: "20px" }}>
               <button
-                className="pagination-btn"
-                onClick={() => handlePageChange(currentPage + 1)}
-                disabled={currentPage === totalPages}
+                onClick={() => handleSearch(1)}
+                disabled={isLoading}
+                style={{
+                  width: "100%",
+                  padding: "16px",
+                  background:
+                    "linear-gradient(135deg, #28a745 0%, #20c997 100%)",
+                  color: "white",
+                  border: "none",
+                  borderRadius: "12px",
+                  fontSize: "1.1rem",
+                  fontWeight: "600",
+                  cursor: "pointer",
+                  transition: "all 0.3s ease",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  gap: "8px",
+                }}
               >
-                Next <i className="fas fa-chevron-right"></i>
+                <span>🔍</span>
+                <span>{isLoading ? "Searching..." : "Search Jobs"}</span>
               </button>
             </div>
-          )}
-        </div>
+
+            {/* Error Message */}
+            {error && (
+              <div
+                className="clean-tip-card"
+                style={{
+                  background: "rgba(248, 113, 113, 0.1)",
+                  border: "1px solid rgba(248, 113, 113, 0.3)",
+                }}
+              >
+                <div className="tip-header">
+                  <span className="tip-icon">⚠️</span>
+                  <span className="tip-title">Search Error</span>
+                </div>
+                <p className="tip-text">{error}</p>
+              </div>
+            )}
+
+            {/* Job Results */}
+            {filteredJobs.length > 0 ? (
+              <div
+                style={{
+                  display: "flex",
+                  flexDirection: "column",
+                  gap: "12px",
+                }}
+              >
+                {filteredJobs.map((job, index) => (
+                  <div
+                    key={index}
+                    style={{
+                      background: "rgba(255, 255, 255, 0.95)",
+                      backdropFilter: "blur(10px)",
+                      borderRadius: "16px",
+                      padding: "20px",
+                      border: "1px solid rgba(255, 255, 255, 0.3)",
+                      boxShadow: "0 4px 15px rgba(0, 0, 0, 0.08)",
+                    }}
+                  >
+                    <div style={{ marginBottom: "12px" }}>
+                      <h3
+                        style={{
+                          margin: "0 0 4px 0",
+                          fontSize: "1.1rem",
+                          fontWeight: "600",
+                          color: "#1f2937",
+                        }}
+                      >
+                        {job.title}
+                      </h3>
+                      <div style={{ color: "#0077b6", fontWeight: "500" }}>
+                        {job.company}
+                      </div>
+                      <div
+                        style={{
+                          color: "#64748b",
+                          fontSize: "0.9rem",
+                          margin: "4px 0",
+                        }}
+                      >
+                        📍 {job.location}
+                      </div>
+                      <p
+                        style={{
+                          color: "#4b5563",
+                          fontSize: "0.9rem",
+                          margin: "8px 0",
+                        }}
+                      >
+                        {job.description}
+                      </p>
+                    </div>
+                    <div style={{ display: "flex", gap: "8px" }}>
+                      <button
+                        onClick={() => handleViewJob(job)}
+                        style={{
+                          flex: 1,
+                          padding: "8px 12px",
+                          background: "#f1f5f9",
+                          color: "#475569",
+                          border: "1px solid #e2e8f0",
+                          borderRadius: "8px",
+                          fontSize: "0.9rem",
+                          cursor: "pointer",
+                        }}
+                      >
+                        👁️ View
+                      </button>
+                      <button
+                        onClick={() => handleOpenApplyModal(job)}
+                        style={{
+                          flex: 1,
+                          padding: "8px 12px",
+                          background:
+                            "linear-gradient(135deg, #0077b6 0%, #003049 100%)",
+                          color: "white",
+                          border: "none",
+                          borderRadius: "8px",
+                          fontSize: "0.9rem",
+                          cursor: "pointer",
+                        }}
+                      >
+                        📤 Apply
+                      </button>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            ) : searchPerformed && !isLoading ? (
+              <div className="clean-tip-card">
+                <div className="tip-header">
+                  <span className="tip-icon">🔍</span>
+                  <span className="tip-title">No Results</span>
+                </div>
+                <p className="tip-text">
+                  Try adjusting your search criteria or location to find more
+                  opportunities.
+                </p>
+              </div>
+            ) : null}
+
+            {/* Secondary Actions - Quick Links */}
+            <div className="clean-secondary-actions">
+              <div
+                className="secondary-action-btn"
+                onClick={() => navigate("/applications")}
+              >
+                <span className="secondary-icon">📋</span>
+                <span className="secondary-text">My Applications</span>
+              </div>
+              <div
+                className="secondary-action-btn"
+                onClick={() => navigate("/resume")}
+              >
+                <span className="secondary-icon">📄</span>
+                <span className="secondary-text">My Resumes</span>
+              </div>
+              <div
+                className="secondary-action-btn"
+                onClick={() => handleSearch(1)}
+              >
+                <span className="secondary-icon">🔄</span>
+                <span className="secondary-text">Refresh</span>
+              </div>
+            </div>
+
+            {/* Pagination */}
+            {totalPages > 1 && (
+              <div
+                className="clean-secondary-actions"
+                style={{ justifyContent: "space-between" }}
+              >
+                <button
+                  className="secondary-action-btn"
+                  onClick={() => handlePageChange(currentPage - 1)}
+                  disabled={currentPage === 1}
+                  style={{ opacity: currentPage === 1 ? 0.5 : 1 }}
+                >
+                  <span className="secondary-icon">⬅️</span>
+                  <span className="secondary-text">Previous</span>
+                </button>
+                <div
+                  className="secondary-action-btn"
+                  style={{ cursor: "default" }}
+                >
+                  <span className="secondary-text">
+                    Page {currentPage} of {totalPages}
+                  </span>
+                </div>
+                <button
+                  className="secondary-action-btn"
+                  onClick={() => handlePageChange(currentPage + 1)}
+                  disabled={currentPage === totalPages}
+                  style={{ opacity: currentPage === totalPages ? 0.5 : 1 }}
+                >
+                  <span className="secondary-icon">➡️</span>
+                  <span className="secondary-text">Next</span>
+                </button>
+              </div>
+            )}
+
+            {/* Today's Tip */}
+            <div className="clean-tip-card">
+              <div className="tip-header">
+                <span className="tip-icon">💡</span>
+                <span className="tip-title">Job Search Tip</span>
+              </div>
+              <p className="tip-text">
+                {filteredJobs.length > 0
+                  ? "Review job requirements carefully and tailor your resume for each application."
+                  : "Use specific keywords from job postings to improve your search results."}
+              </p>
+            </div>
+          </div>
+        ) : (
+          <div className="container">
+            {/* Breadcrumbs */}
+            <nav className="breadcrumbs">
+              <span className="breadcrumb-item">
+                <i className="fas fa-home"></i> Home
+              </span>
+              <span className="breadcrumb-separator">/</span>
+              <span className="breadcrumb-item active">Job Search</span>
+            </nav>
+
+            <h1>Search for Jobs</h1>
+
+            <div className="job-search-form">
+              <input
+                type="text"
+                placeholder="Location (City, Province, or Remote)"
+                value={city}
+                onChange={(e) => setCity(e.target.value)}
+                style={{ minWidth: 0 }}
+              />
+              <input
+                type="text"
+                placeholder="Job title, company, or keywords"
+                value={keyword}
+                onChange={(e) => setKeyword(e.target.value)}
+                style={{ minWidth: 0 }}
+              />
+              <button onClick={() => handleSearch(1)} disabled={isLoading}>
+                <i className="fas fa-search"></i>
+                <span>Search</span>
+              </button>
+            </div>
+
+            {error && (
+              <div
+                style={{
+                  padding: "10px",
+                  margin: "10px 0",
+                  backgroundColor: "#fff3cd",
+                  border: "1px solid #ffeaa7",
+                  borderRadius: "4px",
+                  color: "#856404",
+                }}
+              >
+                {error}
+              </div>
+            )}
+
+            {/* Search Results Info */}
+            {searchPerformed && (
+              <div className="search-results-info">
+                <p>
+                  Showing {filteredJobs.length} of {totalResults} results
+                  {totalPages > 1 && ` (Page ${currentPage} of ${totalPages})`}
+                </p>
+              </div>
+            )}
+
+            <div className="job-listing">
+              {filteredJobs.length === 0 && !isLoading ? (
+                <p>Enter search terms and click "Search" to find jobs.</p>
+              ) : (
+                filteredJobs.map((job, index) => (
+                  <div key={index} className="job-card">
+                    <div className="job-info">
+                      <h3>{job.title}</h3>
+                      <p className="company">{job.company}</p>
+                      <p className="location">
+                        <i className="fas fa-map-marker-alt"></i> {job.location}
+                      </p>
+                      <p className="description">{job.description}</p>
+                    </div>
+                    <div
+                      style={{
+                        display: "flex",
+                        flexDirection: "column",
+                        gap: "0.5rem",
+                      }}
+                    >
+                      <button
+                        className="job-action"
+                        onClick={() => handleViewJob(job)}
+                      >
+                        View
+                      </button>
+                      <button
+                        className="job-action"
+                        style={{ background: "#0077b6", color: "white" }}
+                        onClick={() => handleOpenApplyModal(job)}
+                      >
+                        Apply
+                      </button>
+                    </div>
+                  </div>
+                ))
+              )}
+            </div>
+
+            {/* Pagination */}
+            {totalPages > 1 && (
+              <div className="pagination">
+                <button
+                  className="pagination-btn"
+                  onClick={() => handlePageChange(currentPage - 1)}
+                  disabled={currentPage === 1}
+                >
+                  <i className="fas fa-chevron-left"></i> Previous
+                </button>
+
+                <div className="page-numbers">
+                  {Array.from({ length: Math.min(5, totalPages) }, (_, i) => {
+                    let pageNum;
+                    if (totalPages <= 5) {
+                      pageNum = i + 1;
+                    } else if (currentPage <= 3) {
+                      pageNum = i + 1;
+                    } else if (currentPage >= totalPages - 2) {
+                      pageNum = totalPages - 4 + i;
+                    } else {
+                      pageNum = currentPage - 2 + i;
+                    }
+
+                    return (
+                      <button
+                        key={pageNum}
+                        className={`page-number ${currentPage === pageNum ? "active" : ""}`}
+                        onClick={() => handlePageChange(pageNum)}
+                      >
+                        {pageNum}
+                      </button>
+                    );
+                  })}
+                </div>
+
+                <button
+                  className="pagination-btn"
+                  onClick={() => handlePageChange(currentPage + 1)}
+                  disabled={currentPage === totalPages}
+                >
+                  Next <i className="fas fa-chevron-right"></i>
+                </button>
+              </div>
+            )}
+          </div>
+        )}
       </main>
 
       {/* Apply Modal */}
