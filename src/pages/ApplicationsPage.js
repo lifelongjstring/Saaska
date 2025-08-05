@@ -90,7 +90,7 @@ const ApplicationsPage = () => {
       ) : (
         <Sidebar />
       )}
-      <main className="main-content" style={{ marginLeft: isMobile ? 0 : 180 }}>
+      <main className="main-content">
         {/* Mobile: Ultra-clean streamlined experience */}
         {isMobile ? (
           <div className="ultra-clean-mobile-dashboard">
