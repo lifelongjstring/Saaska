@@ -7,13 +7,19 @@ import React from "react";
  */
 const Hero = () => {
   return (
-    <section className="hero">
-      <div className="hero-container">
-        <h2>What Can I Do For You?</h2>
-        <p>Your all-in-one career platform with AI-powered tools to help you land your dream job</p>
+    <section className="hero mobile-hero">
+      <div className="hero-container mobile-hero-container">
+        <h2 className="mobile-hero-title">What Can I Do For You?</h2>
+        <p className="mobile-hero-description">
+          Your all-in-one career platform with AI-powered tools to help you land
+          your dream job
+        </p>
 
-        <div className="dropdown" style={{ marginBottom: "40px" }}>
-          <select id="service-select">
+        <div
+          className="dropdown mobile-dropdown"
+          style={{ marginBottom: "40px" }}
+        >
+          <select id="service-select" className="mobile-select">
             <option value="AI Tools">AI Tools</option>
             <option value="Resume">Resume</option>
             <option value="Cover Letter">Cover Letter</option>
@@ -22,8 +28,77 @@ const Hero = () => {
           </select>
         </div>
 
-        <a href="#" className="btn">Get Started</a>
+        <a href="#" className="btn mobile-btn">
+          Get Started
+        </a>
       </div>
+      <style jsx>{`
+        @media (max-width: 768px) {
+          .mobile-hero {
+            padding: 30px 15px !important;
+            text-align: center;
+          }
+
+          .mobile-hero-container {
+            max-width: 100% !important;
+            width: 100% !important;
+            padding: 0 10px !important;
+          }
+
+          .mobile-hero-title {
+            font-size: 26px !important;
+            line-height: 1.3 !important;
+            margin-bottom: 20px !important;
+            word-wrap: break-word;
+          }
+
+          .mobile-hero-description {
+            font-size: 16px !important;
+            line-height: 1.5 !important;
+            margin-bottom: 30px !important;
+            padding: 0 5px !important;
+          }
+
+          .mobile-dropdown {
+            width: 100% !important;
+            max-width: 100% !important;
+            margin: 20px auto !important;
+          }
+
+          .mobile-select {
+            width: 100% !important;
+            max-width: 100% !important;
+            padding: 15px !important;
+            font-size: 16px !important;
+            border-radius: 8px !important;
+            min-height: 48px;
+          }
+
+          .mobile-btn {
+            width: 100% !important;
+            max-width: 300px !important;
+            margin: 20px auto !important;
+            padding: 15px 25px !important;
+            font-size: 16px !important;
+            min-height: 48px;
+            display: block !important;
+          }
+        }
+
+        @media (max-width: 480px) {
+          .mobile-hero-title {
+            font-size: 22px !important;
+          }
+
+          .mobile-hero-description {
+            font-size: 15px !important;
+          }
+
+          .mobile-btn {
+            font-size: 15px !important;
+          }
+        }
+      `}</style>
     </section>
   );
 };

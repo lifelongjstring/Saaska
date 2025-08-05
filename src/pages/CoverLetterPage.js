@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import Sidebar from "../components/Sidebar";
 import Footer from "../components/Footer";
 import "../styles/resume.css";
 import "../App.css";
+import MobileDrawer from "../components/MobileDrawer";
 
 /**
  * CoverLetterPage component displays a list of cover letters and allows creation of new ones.
@@ -11,6 +12,15 @@ import "../App.css";
  * @precondition Should be used within a React Router context.
  */
 export default function CoverLetterPage() {
+  // Mobile drawer state
+  const [drawerOpen, setDrawerOpen] = useState(false);
+
+  // Detect mobile
+  const isMobile =
+    typeof window !== "undefined" &&
+    window.matchMedia &&
+    window.matchMedia("(max-width: 600px)").matches;
+
   /**
    * List of cover letters to display on the page.
    * @type {Array<{title: string, lastEdited: string}>}
@@ -24,13 +34,59 @@ export default function CoverLetterPage() {
 
   return (
     <div className="resume-page-wrapper">
-      <Sidebar />
+      {/* Hamburger for mobile */}
+      {isMobile && !drawerOpen && (
+        <button
+          className="hamburger-btn"
+          aria-label="Open sidebar menu"
+          aria-expanded={drawerOpen}
+          onClick={() => setDrawerOpen(true)}
+          style={{
+            position: "fixed",
+            top: 12,
+            left: 12,
+            zIndex: 2001,
+            background: "none",
+            border: "none",
+            fontSize: 28,
+            color: "#fff",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            width: 44,
+            height: 44,
+            borderRadius: 8,
+            boxShadow: "0 2px 8px rgba(0,0,0,0.12)",
+          }}
+        >
+          ☰
+        </button>
+      )}
+
+      {isMobile ? (
+        <MobileDrawer
+          isOpen={drawerOpen}
+          onClose={() => setDrawerOpen(false)}
+        />
+      ) : (
+        <Sidebar />
+      )}
 
       <main className="main-content">
-        <div className="dashboard-gradient-box" style={{ width: '100%', maxWidth: '1020px', margin: '24px auto 16px auto' }}>
+        <div
+          className="dashboard-gradient-box"
+          style={{
+            width: "100%",
+            maxWidth: "1020px",
+            margin: "24px auto 16px auto",
+          }}
+        >
           <div className="section-title">Your Cover Letters</div>
           <div className="card-grid">
-            <Link to="/cover-letter-maker-page" className="card new-resume-card">
+            <Link
+              to="/cover-letter-maker-page"
+              className="card new-resume-card"
+            >
               <i className="fas fa-plus-circle"></i>
               <div>Create New Letter</div>
             </Link>
@@ -46,7 +102,9 @@ export default function CoverLetterPage() {
                */
               <div className="card" key={index}>
                 <div className="card-title">{letter.title}</div>
-                <div className="card-meta">Last edited: {letter.lastEdited}</div>
+                <div className="card-meta">
+                  Last edited: {letter.lastEdited}
+                </div>
               </div>
             ))}
           </div>

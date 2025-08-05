@@ -4,8 +4,8 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./App.css"; // This should contain the CSS you pasted
-import googleG from './components/google-g.png';
-import saaskaLogo from './components/icons8-job-80.png';
+import googleG from "./components/google-g.png";
+import saaskaLogo from "./components/icons8-job-80.png";
 
 export default function LoginPage() {
   // Registration and login state
@@ -46,10 +46,38 @@ export default function LoginPage() {
 
   return (
     <>
-      <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', marginBottom: '24px', marginTop: '24px' }}>
-        <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', gap: '12px' }}>
-          <img src={saaskaLogo} alt="SaaSka Logo" style={{ width: '60px', marginBottom: '0' }} />
-          <span style={{ fontSize: '2rem', fontWeight: 'bold', color: '#fff', letterSpacing: '1px' }}>SaaSka</span>
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          marginBottom: "24px",
+          marginTop: "24px",
+        }}
+      >
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "row",
+            alignItems: "center",
+            gap: "12px",
+          }}
+        >
+          <img
+            src={saaskaLogo}
+            alt="SaaSka Logo"
+            style={{ width: "60px", marginBottom: "0" }}
+          />
+          <span
+            style={{
+              fontSize: "2rem",
+              fontWeight: "bold",
+              color: "#fff",
+              letterSpacing: "1px",
+            }}
+          >
+            SaaSka
+          </span>
         </div>
       </div>
       <div className="main">
@@ -84,6 +112,9 @@ export default function LoginPage() {
             <button type="submit" onClick={handleLogin}>
               Log in
             </button>
+            <label htmlFor="chk" className="signup-toggle-btn">
+              Don't have an account? Sign Up
+            </label>
           </form>
         </div>
 
@@ -123,19 +154,78 @@ export default function LoginPage() {
                 setRegisterData({ ...registerData, password: e.target.value })
               }
             />
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '4px', marginTop: '12px', alignItems: 'center' }}>
-              <button type="submit" onClick={handleRegister} style={{ margin: 0, width: '40%' }}>
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                gap: "4px",
+                marginTop: "12px",
+                alignItems: "center",
+              }}
+            >
+              <button
+                type="submit"
+                onClick={handleRegister}
+                style={{ margin: 0, width: "40%" }}
+              >
                 Sign up
               </button>
-              <button type="button" onClick={handleGoogleRegister} style={{ background: '#fff', color: '#444', border: '1px solid #ccc', display: 'flex', alignItems: 'center', gap: '4px', justifyContent: 'center', margin: 0, width: '40%' }}>
+              <button
+                type="button"
+                onClick={handleGoogleRegister}
+                style={{
+                  background: "#fff",
+                  color: "#444",
+                  border: "1px solid #ccc",
+                  display: "flex",
+                  alignItems: "center",
+                  gap: "4px",
+                  justifyContent: "center",
+                  margin: 0,
+                  width: "40%",
+                }}
+              >
                 Register with Google
-                <img src={googleG} alt="Google G" width="20" height="20" style={{ display: 'inline', verticalAlign: 'middle' }} />
+                <img
+                  src={googleG}
+                  alt="Google G"
+                  width="20"
+                  height="20"
+                  style={{ display: "inline", verticalAlign: "middle" }}
+                />
               </button>
-              <button type="button" onClick={handleLinkedInRegister} style={{ background: '#0077b5', color: '#fff', border: 'none', display: 'flex', alignItems: 'center', gap: '4px', justifyContent: 'center', margin: 0, width: '40%' }}>
+              <button
+                type="button"
+                onClick={handleLinkedInRegister}
+                style={{
+                  background: "#0077b5",
+                  color: "#fff",
+                  border: "none",
+                  display: "flex",
+                  alignItems: "center",
+                  gap: "4px",
+                  justifyContent: "center",
+                  margin: 0,
+                  width: "40%",
+                }}
+              >
                 Register with LinkedIn
-                <svg width="20" height="20" viewBox="0 0 448 512" style={{ display: 'inline', verticalAlign: 'middle' }}><path fill="#fff" d="M100.28 448H7.4V148.9h92.88zm-46.44-340.7C24.09 107.3 0 83.2 0 53.6A53.6 53.6 0 0 1 53.6 0a53.6 53.6 0 0 1 53.6 53.6c0 29.6-24.09 53.7-53.36 53.7zM447.8 448h-92.4V302.4c0-34.7-12.4-58.4-43.3-58.4-23.6 0-37.6 15.9-43.7 31.3-2.3 5.6-2.8 13.4-2.8 21.2V448h-92.5s1.2-242.1 0-267.1h92.4v37.9c12.3-19 34.3-46.1 83.5-46.1 60.9 0 106.7 39.7 106.7 125.2V448z"/></svg>
+                <svg
+                  width="20"
+                  height="20"
+                  viewBox="0 0 448 512"
+                  style={{ display: "inline", verticalAlign: "middle" }}
+                >
+                  <path
+                    fill="#fff"
+                    d="M100.28 448H7.4V148.9h92.88zm-46.44-340.7C24.09 107.3 0 83.2 0 53.6A53.6 53.6 0 0 1 53.6 0a53.6 53.6 0 0 1 53.6 53.6c0 29.6-24.09 53.7-53.36 53.7zM447.8 448h-92.4V302.4c0-34.7-12.4-58.4-43.3-58.4-23.6 0-37.6 15.9-43.7 31.3-2.3 5.6-2.8 13.4-2.8 21.2V448h-92.5s1.2-242.1 0-267.1h92.4v37.9c12.3-19 34.3-46.1 83.5-46.1 60.9 0 106.7 39.7 106.7 125.2V448z"
+                  />
+                </svg>
               </button>
             </div>
+            <label htmlFor="chk" className="signup-toggle-btn">
+              Already have an account? Log In
+            </label>
           </form>
         </div>
       </div>

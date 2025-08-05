@@ -17,7 +17,8 @@ import FeaturesPage from "./pages/FeaturesPage";
 import ResumeMakerPage from "./pages/ResumeMakerPage";
 import CoverLetterMakerPage from "./pages/CoverLetterMakerPage";
 import ResumePreviewPage from "./pages/ResumePreviewPage";
-
+import "./App.css";
+import "./mobile.css";
 
 function App() {
   return (
@@ -29,7 +30,7 @@ function App() {
               <Routes>
                 <Route path="/" element={<HomePage />} />
                 <Route path="/login" element={<LoginPage />} />
-                <Route path="/resume" element={<ResumePage />} /> 
+                <Route path="/resume" element={<ResumePage />} />
                 <Route path="/cover_letter" element={<CoverLetterPage />} />
                 <Route path="/applications" element={<ApplicationsPage />} />
                 <Route path="/interviews" element={<InterviewPage />} />
@@ -37,8 +38,14 @@ function App() {
                 <Route path="/job-search" element={<JobSearchPage />} />
                 <Route path="/pricing" element={<PricingPage />} />
                 <Route path="/features" element={<FeaturesPage />} />
-                <Route path="/resume-maker-page" element={<ResumeMakerPage />} />
-                <Route path="/cover-letter-maker-page" element={<CoverLetterMakerPage />} />
+                <Route
+                  path="/resume-maker-page"
+                  element={<ResumeMakerPage />}
+                />
+                <Route
+                  path="/cover-letter-maker-page"
+                  element={<CoverLetterMakerPage />}
+                />
                 <Route path="/resume-preview" element={<ResumePreviewPage />} />
               </Routes>
             </main>

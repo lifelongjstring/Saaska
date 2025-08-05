@@ -5,23 +5,23 @@ const features = [
   {
     img: "images/index/u14.png",
     title: "Resumes & Cover Letters",
-    desc: "Create professional documents that get you noticed by employers"
+    desc: "Create professional documents that get you noticed by employers",
   },
   {
     img: "images/index/u15.png",
     title: "Search & Apply Jobs",
-    desc: "Find and apply to the best opportunities in your field"
+    desc: "Find and apply to the best opportunities in your field",
   },
   {
     img: "images/index/u16.png",
     title: "Practice Interviews",
-    desc: "Prepare for your interviews with our AI-powered simulator"
+    desc: "Prepare for your interviews with our AI-powered simulator",
   },
   {
     img: "images/index/u17.png",
     title: "Track Applications",
-    desc: "Manage all your job applications in one place"
-  }
+    desc: "Manage all your job applications in one place",
+  },
 ];
 
 /**
@@ -31,8 +31,8 @@ const features = [
  */
 const Features = () => {
   return (
-    <section className="features p-0 m-0 w-full" style={{padding: 0, margin: 0, width: '100vw', maxWidth: '100vw'}}>
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 w-full" style={{width: '100vw', maxWidth: '100vw'}}>
+    <section className="features">
+      <div className="features-grid">
         {features.map((feature, idx) => (
           /**
            * Render a single FeatureCard.
