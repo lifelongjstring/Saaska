@@ -706,7 +706,7 @@ export default function InterviewQuestionsPage() {
           )}
         </main>
       </div>
-      <Footer />
+      {!isMobile && <Footer />}
     </>
   );
 }

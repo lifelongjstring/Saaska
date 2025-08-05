@@ -313,7 +313,7 @@ export default function ResumePage() {
         )}
       </main>
 
-      <Footer />
+      {!isMobile && <Footer />}
     </div>
   );
 }

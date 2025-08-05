@@ -316,7 +316,7 @@ export default function CoverLetterPage() {
         )}
       </main>
 
-      <Footer />
+      {!isMobile && <Footer />}
     </div>
   );
 }

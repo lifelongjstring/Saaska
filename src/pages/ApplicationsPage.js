@@ -380,7 +380,7 @@ const ApplicationsPage = () => {
           </div>
         )}
       </main>
-      <Footer />
+      {!isMobile && <Footer />}
     </div>
   );
 };

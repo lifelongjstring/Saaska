@@ -1027,7 +1027,7 @@ export default function JobSearchPage() {
         </div>
       )}
 
-      <Footer />
+      {!isMobile && <Footer />}
     </div>
   );
 }
