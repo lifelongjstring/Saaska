@@ -203,7 +203,7 @@ export default function InterviewQuestionsPage() {
         ) : (
           <Sidebar />
         )}
-        <main className="main-content">
+        <main className="interview-main-content">
           {/* Mobile: Ultra-clean streamlined experience */}
           {isMobile ? (
             <div className="ultra-clean-mobile-dashboard">
@@ -463,8 +463,6 @@ export default function InterviewQuestionsPage() {
             <div
               className={`dashboard-gradient-box ${sidebarCollapsed ? "collapsed" : "expanded"}`}
               style={{
-                maxWidth: 1200,
-                margin: "24px auto 16px 180px",
                 width: "100%",
                 transition: "margin 0.3s cubic-bezier(.4,0,.2,1)",
               }}
@@ -706,7 +704,7 @@ export default function InterviewQuestionsPage() {
           )}
         </main>
       </div>
-      {!isMobile && <Footer />}
-    </>
+      {!isMobile}    
+      </>
   );
 }

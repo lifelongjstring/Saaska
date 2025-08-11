@@ -21,14 +21,9 @@
         white 50%,
         #c97c29 100%
     );
-    padding: 25px 40px;
     box-shadow: 0 8px 25px rgba(255, 123, 37, 0.5);
-    border-radius: 16px;
-    margin: 40px 10px 20px 40px;
-    width: 80%;
-    margin-left: 0px;
+    width: 100%;
     margin-right: auto;
-    /* Remove restrictive height/overflow */
     min-height: unset;
     max-height: unset;
     overflow-y: unset;
@@ -40,7 +35,6 @@
     color: #333;
     border: 1px solid rgba(255, 255, 255, 0.3);
     position: relative;
-    left: -80px;
     z-index: 1;
 }
 
@@ -361,7 +355,6 @@
 
 .main-content {
     position: relative;
-    left: -80px;
     /* Remove min-height restriction */
     min-height: unset;
     padding: clamp(8px, 2vw, 32px) 0;
@@ -376,7 +369,7 @@
     margin-left: var(--sidebar-width);
 }
 .dashboard-page-wrapper .container {
-    width: 60%;
+    width: 100%;
     margin: 0 auto;
     box-sizing: border-box;
     font-size: 0.49em;

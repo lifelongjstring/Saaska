@@ -124,7 +124,7 @@ export default function CoverLetterMakerPage() {
             background: "none",
             border: "none",
             fontSize: 28,
-            color: "#fff",
+            color: "#black",
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
@@ -395,7 +395,7 @@ export default function CoverLetterMakerPage() {
             </svg>
             <h1
               style={{
-                color: "black",
+                color: "white",
                 fontWeight: 700,
                 fontSize: "2rem",
                 marginBottom: "1.5rem",
@@ -447,7 +447,7 @@ export default function CoverLetterMakerPage() {
                         style={{
                           fontWeight: activeSection === step.key ? 700 : 400,
                           color:
-                            activeSection === step.key ? "#0077b6" : "#333",
+                          activeSection === step.key ? "white" : "0077b6",
                           fontSize: 15,
                         }}
                       >
@@ -554,7 +554,7 @@ export default function CoverLetterMakerPage() {
           </>
         )}
       </main>
-      {!isMobile && <Footer />}
+      {!isMobile}
     </div>
   );
 }

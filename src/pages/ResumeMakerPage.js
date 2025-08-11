@@ -513,7 +513,7 @@ export default function ResumeMakerPage() {
             </svg>
             <h1
               style={{
-                color: "black",
+                color: "white",
                 fontWeight: 700,
                 fontSize: "2rem",
                 marginBottom: "1.5rem",
@@ -584,7 +584,7 @@ export default function ResumeMakerPage() {
                         style={{
                           fontWeight: activeSection === step.key ? 700 : 400,
                           color:
-                            activeSection === step.key ? "#0077b6" : "#333",
+                            activeSection === step.key ? "white" : "0077b6",
                           fontSize: 15,
                         }}
                       >
@@ -717,7 +717,7 @@ export default function ResumeMakerPage() {
           </>
         )}
       </main>
-      {!isMobile && <Footer />}
+      {!isMobile}
     </div>
   );
 }

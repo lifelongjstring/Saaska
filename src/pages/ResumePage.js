@@ -102,7 +102,7 @@ export default function ResumePage() {
         <Sidebar />
       )}
 
-      <main className="main-content">
+      <main className="resume-main-content">
         {/* Mobile: Ultra-clean streamlined experience */}
         {isMobile ? (
           <div className="ultra-clean-mobile-dashboard">
@@ -313,7 +313,7 @@ export default function ResumePage() {
         )}
       </main>
 
-      {!isMobile && <Footer />}
+      {!isMobile}
     </div>
   );
 }

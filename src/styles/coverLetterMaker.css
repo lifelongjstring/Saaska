@@ -1,7 +1,6 @@
 /* Cover Letter Maker Page Specific Layout */
 .cover-letter-maker-content {
     margin-left: var(--sidebar-width);
-    padding: 40px 60px;
     min-height: 100vh;
     width: 100%;
     max-width: none;
@@ -44,7 +43,6 @@
 @media (max-width: 600px) {
     .cover-letter-maker-content {
         margin-left: 0;
-        padding: 20px;
         display: flex;
         justify-content: center;
         align-items: flex-start;

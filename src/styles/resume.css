@@ -1,7 +1,7 @@
 /* ===== Base Styles ===== */
 body {
-  --sidebar-width: 220px;
-  --main-content-max-width: 85vw;
+
+  --resume-main-content-max-width: 85vw;
   display: flex;
   min-height: 100vh;
   font-family: 'Jost', sans-serif;
@@ -28,7 +28,6 @@ body {
 }
 
 .sidebar.collapsed {
-  width: 70px;
   padding: 40px 15px;
 }
 
@@ -79,20 +78,17 @@ body {
 }
 
 /* ===== Main Content Area ===== */
-.main-content {
-  margin-left: var(--sidebar-width);
-  padding: 40px 60px;
+.resume-main-content {
   transition: all 0.3s ease;
-  min-height: 100vh;
   width: 100%;
-  max-width: var(--main-content-max-width);
+  max-width: var(--resume-main-content-max-width);
   margin-right: auto;
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
 }
 
-.main-content.collapsed {
+.resume-main-content.collapsed {
   margin-left: 70px;
   width: calc(100% - 70px);
 }
@@ -242,7 +238,7 @@ footer {
   .sidebar {
     width: 200px;
   }
-  .main-content {
+  .resume-main-content {
     padding: 30px;
   }
   footer {
@@ -258,7 +254,7 @@ footer {
     position: relative;
     padding: 20px;
   }
-  .main-content, footer {
+  .resume-main-content, footer {
     width: 100%;
     margin-left: 0;
   }
@@ -324,7 +320,7 @@ footer {
   }
 
 /* ===== Dashboard Page Specific Styles ===== */
-.dashboard-page-wrapper .main-content {
+.dashboard-page-wrapper .resume-main-content {
   margin-left: 0;
   width: 100%;
   padding: 0;
@@ -332,21 +328,19 @@ footer {
   padding-bottom: 80px; /* Add extra padding to prevent footer overlap */
 }
 
-.dashboard-page-wrapper .main-content.collapsed {
+.dashboard-page-wrapper .resume-main-content.collapsed {
   margin-left: 0;
   width: 100%;
 }
 
-.dashboard-page-wrapper .sidebar.collapsed ~ .main-content .dashboard-gradient-box {
+.dashboard-page-wrapper .sidebar.collapsed ~ .resume-main-content .dashboard-gradient-box {
   max-width: 1600px;
   transition: max-width 0.3s;
 }
 
 /* ===== Resume and Cover Letter Page Specific Styles ===== */
-.resume-page-wrapper .main-content {
-  margin-left: var(--sidebar-width);
-  padding: 40px 60px;
-  min-height: 100vh;
+.resume-page-wrapper .resume-main-content {
+
   width: 100%;
   max-width: var(--main-content-max-width);
   margin-right: auto;
@@ -355,8 +349,7 @@ footer {
   flex-direction: column;
 }
 
-.resume-page-wrapper .main-content.collapsed {
-  margin-left: 70px;
+.resume-page-wrapper .resume-main-content.collapsed {
   width: calc(100% - 70px);
 }
 
@@ -365,17 +358,17 @@ footer {
   padding-left: 0; /* Reset any left padding */
 }
 
-.resume-page-wrapper .sidebar.collapsed ~ .main-content .dashboard-gradient-box {
+.resume-page-wrapper .sidebar.collapsed ~ .resume-main-content .dashboard-gradient-box {
   max-width: 1600px;
   transition: max-width 0.3s;
 }
 
-.resume-page-wrapper .main-content {
+.resume-page-wrapper .resume-main-content {
   padding-left: 0;
   padding-right: 0;
 }
 
-.resume-page-wrapper .main-content.collapsed {
+.resume-page-wrapper .resume-main-content.collapsed {
   padding-left: 100px; /* Increased from 60px to 100px when sidebar is collapsed */
 }
 
@@ -392,19 +385,19 @@ footer {
 }
 
 /* ===== Interview Page Specific Styles ===== */
-.resume-page-wrapper .main-content .filters {
+.resume-page-wrapper .resume-main-content .filters {
   margin-top: 2rem;
   margin-bottom: 3rem;
   padding: 0;
 }
 
-.resume-page-wrapper .main-content .actions {
+.resume-page-wrapper .resume-main-content .actions {
   margin-top: 3rem;
   margin-bottom: 2rem;
   padding: 0;
 }
 
-.resume-page-wrapper .main-content .section-title {
+.resume-page-wrapper .resume-main-content .section-title {
   margin-bottom: 2rem;
   padding: 0;
 }
@@ -507,10 +500,9 @@ footer {
 }
 
 .container {
-  width: 80%;
+  width: 100%;
   margin-left: 0px;
   position: relative;
-  left: -80px;
 }
 
 .resume-section-title {
@@ -522,3 +514,4 @@ footer {
   align-items: center;
   gap: 0.5rem;
 }
+
