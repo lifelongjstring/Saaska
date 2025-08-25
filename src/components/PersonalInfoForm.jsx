@@ -159,6 +159,21 @@ export default function PersonalInfoForm({ form, handleChange }) {
             placeholder="Professional summary..."
             style={{ ...inputStyle, minHeight: 80, resize: "vertical" }}
           />
+
+          <label style={{ ...labelStyle, marginTop: 12 }}>
+            Resume Style
+          </label>
+          <select
+            name="resumeStyle"
+            value={form.resumeStyle}
+            onChange={handleChange}
+            style={inputStyle}
+          >
+            <option value="traditional">Traditional - Classic and professional</option>
+            <option value="modern">Modern - Clean and contemporary</option>
+            <option value="creative">Creative - Unique and artistic</option>
+            <option value="minimalist">Minimalist - Simple and focused</option>
+          </select>
         </div>
       </fieldset>
     </div>

@@ -44,6 +44,7 @@ export default function ResumeMakerPage() {
     degree: "",
     eduDesc: "",
     skills: "",
+    resumeStyle: "traditional", // Add resume style field
   });
   const [saved, setSaved] = useState(false);
   const [aiLoading, setAiLoading] = useState(false);
@@ -126,7 +127,7 @@ export default function ResumeMakerPage() {
     setAiLoading(true);
     setAiError("");
     try {
-      const { name, jobTitle, skills, company, location } = form;
+      const { name, jobTitle, skills, company, location, resumeStyle } = form;
       if (!name || !jobTitle || !skills) {
         setAiError(
           "Please fill in your name, job title, and skills before generating.",
@@ -141,6 +142,7 @@ export default function ResumeMakerPage() {
         summary: `Experienced ${jobTitle} with a passion for innovation and a proven track record at ${company || "top companies"}. Skilled in ${skills}. Based in ${location || "your area"}.`,
         workDesc: `- Led successful projects as a ${jobTitle} at ${company || "your company"}\n- Collaborated with cross-functional teams\n- Achieved measurable results in key performance areas`,
         eduDesc: `Graduated with honors. Relevant coursework and extracurriculars in your field.`,
+        resumeStyle: resumeStyle, // Include the selected resume style
       };
       // Save to localStorage for fallback
       localStorage.setItem("aiResumePreview", JSON.stringify(aiResume));
@@ -148,6 +150,7 @@ export default function ResumeMakerPage() {
       trackResumeCreated({
         title: `${aiResume.name}'s AI Resume`,
         template: "AI Generated",
+        style: resumeStyle, // Track the style used
       });
       // Navigate to preview page with state
       navigate("/resume-preview", { state: { resume: aiResume } });
@@ -481,7 +484,7 @@ export default function ResumeMakerPage() {
               </div>
               <p className="tip-text">
                 {currentStep === 0 &&
-                  "Use a professional email address and include your LinkedIn profile."}
+                  "Use a professional email address, include your LinkedIn profile, and choose a resume style that matches your industry."}
                 {currentStep === 1 &&
                   "Focus on achievements and quantify your results with numbers when possible."}
                 {currentStep === 2 &&
