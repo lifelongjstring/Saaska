@@ -375,7 +375,6 @@ const ApplicationsPage = () => {
             >
               Track all the jobs you've applied for in one place.
             </div>
-            {/* Remove the card-grid wrapper to allow ApplicationsTable to center */}
             <ApplicationsTable />
           </div>
         )}

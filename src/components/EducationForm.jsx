@@ -1,8 +1,13 @@
 import React from "react";
 
+// EducationForm component
+// Props:
+// - form: an object holding the current form values (school, degree, eduDesc)
+// - handleChange: a function to update form values when inputs change
 export default function EducationForm({ form, handleChange }) {
   return (
     <div
+      // Card-like container styling
       style={{
         background: "#fff",
         borderRadius: 18,
@@ -14,21 +19,27 @@ export default function EducationForm({ form, handleChange }) {
       }}
     >
       <section>
+        {/* Section Title */}
         <h2 style={{ fontSize: "1.5rem", fontWeight: 800, marginBottom: 8 }}>
           Education
         </h2>
+
+        {/* Short description text */}
         <div style={{ color: "#555", fontSize: "1.08rem", marginBottom: 24 }}>
-          Include your most recent school and degree. This gives recruiters insight into your academic background.
+          Include your most recent school and degree. This gives recruiters
+          insight into your academic background.
         </div>
 
+        {/* Input fields grouped with flex layout */}
         <div
           style={{
             display: "flex",
             gap: 16,
             marginBottom: 18,
-            flexWrap: "wrap",
+            flexWrap: "wrap", // ensures responsiveness on smaller screens
           }}
         >
+          {/* School input */}
           <div style={{ flex: 1, minWidth: "100%" }}>
             <label className="field-label" style={labelStyle}>
               School or university name
@@ -41,6 +52,8 @@ export default function EducationForm({ form, handleChange }) {
               style={inputStyle}
             />
           </div>
+
+          {/* Degree input */}
           <div style={{ flex: 1, minWidth: "100%" }}>
             <label className="field-label" style={labelStyle}>
               Degree or qualification
@@ -55,6 +68,7 @@ export default function EducationForm({ form, handleChange }) {
           </div>
         </div>
 
+        {/* Optional description textarea */}
         <label className="field-label" style={labelStyle}>
           Additional notes (optional)
         </label>
@@ -69,6 +83,7 @@ export default function EducationForm({ form, handleChange }) {
   );
 }
 
+// Shared label styling
 const labelStyle = {
   fontWeight: 600,
   fontSize: 14,
@@ -79,6 +94,7 @@ const labelStyle = {
   color: "#000",
 };
 
+// Shared input styling
 const inputStyle = {
   width: "100%",
   fontSize: 16,

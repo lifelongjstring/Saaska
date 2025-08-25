@@ -2,6 +2,8 @@ import React from "react";
 
 /**
  * Hero component displays the main hero section of the homepage.
+ * Includes a title, description, service dropdown, and a call-to-action button.
+ *
  * @returns {JSX.Element} The rendered hero section.
  * @precondition Should be used at the top of the homepage.
  */
@@ -9,12 +11,16 @@ const Hero = () => {
   return (
     <section className="hero mobile-hero">
       <div className="hero-container mobile-hero-container">
+        {/* Main headline */}
         <h2 className="mobile-hero-title">What Can I Do For You?</h2>
+
+        {/* Subheading / description */}
         <p className="mobile-hero-description">
           Your all-in-one career platform with AI-powered tools to help you land
           your dream job
         </p>
 
+        {/* Service selection dropdown (mobile optimized) */}
         <div
           className="dropdown mobile-dropdown"
           style={{ marginBottom: "40px" }}
@@ -28,11 +34,14 @@ const Hero = () => {
           </select>
         </div>
 
+        {/* Call-to-action button */}
         <a href="#" className="btn mobile-btn">
           Get Started
         </a>
       </div>
+
       <style jsx>{`
+        /* Tablet & below (<= 768px) */
         @media (max-width: 768px) {
           .mobile-hero {
             padding: 30px 15px !important;
@@ -85,6 +94,7 @@ const Hero = () => {
           }
         }
 
+        /* Small screens (<= 480px) */
         @media (max-width: 480px) {
           .mobile-hero-title {
             font-size: 22px !important;

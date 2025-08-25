@@ -3,10 +3,9 @@
 
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import "./App.css"; // This should contain the CSS you pasted
+import "./App.css";
 import googleG from "./components/google-g.png";
-import saaskaLogo from "./components/icons8-job-80.png";
-
+import saaskaLogo from "./components/icons8-job-80.png"; // This is a placeholder logo. Replace with your own.
 export default function LoginPage() {
   // Registration and login state
   const [registerData, setRegisterData] = useState({

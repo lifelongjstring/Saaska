@@ -114,7 +114,13 @@ export default function JobSearchPage() {
 
   const searchJobs = async (keyword, city, page = 1) => {
     try {
-      // Using Adzuna API with environment variables
+      // Using Adzuna API with environment variables. This is my personal free tier key. You will need to replace them with your own keys.
+      // Sign up for free at https://developer.adzuna.com/ to get your own.
+      // Once you have your keys, create a .env file in the root of the project with:
+      // REACT_APP_ADZUNA_APP_ID=your_app_id
+      // REACT_APP_ADZUNA_APP_KEY=your_app_key
+
+
       const appId = process.env.REACT_APP_ADZUNA_APP_ID;
       const appKey = process.env.REACT_APP_ADZUNA_APP_KEY;
 
@@ -464,7 +470,7 @@ export default function JobSearchPage() {
       )}
 
       <main className="main-content">
-        {/* Mobile: Ultra-clean streamlined experience */}
+        {/* Mobile */}
         {isMobile ? (
           <div className="ultra-clean-mobile-dashboard">
             {/* Greeting Section */}

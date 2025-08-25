@@ -9,6 +9,15 @@ const navLinks = [
   { href: "/interviews", icon: "fa-lightbulb", label: "Interview Practice" },
 ];
 
+/**
+ * MobileDrawer component provides a slide-in navigation drawer for mobile devices.
+ * 
+ * @param {Object} props - Component props
+ * @param {boolean} props.isOpen - Whether the drawer is open
+ * @param {Function} props.onClose - Function to call when closing the drawer
+ * @returns {JSX.Element} The rendered mobile navigation drawer
+ * @precondition Should be used in a mobile or small screen context
+ */
 export default function MobileDrawer({ isOpen, onClose }) {
   return (
     <>

@@ -65,7 +65,7 @@ export default function DashboardPage() {
       "⏰ Set aside time daily for job searching",
     ];
 
-    // Return tips based on user activity
+    // Return tips based on user activity, currently random for simplicity
     if (stats.resumesCreated === 0) {
       return tips[0];
     } else if (stats.coverLettersGenerated === 0) {
@@ -157,7 +157,7 @@ export default function DashboardPage() {
             <p className="welcome-message">{getWelcomeMessage()}</p>
           </div>
 
-          {/* Mobile: Ultra-clean streamlined experience */}
+          {/* Mobile */}
           {isMobile ? (
             <div className="ultra-clean-mobile-dashboard">
               {/* Greeting Section */}
@@ -168,7 +168,7 @@ export default function DashboardPage() {
                 </div>
               </div>
 
-              {/* Stats Cards - Minimal Design */}
+              {/* Stats Cards */}
               <div className="clean-stats-section">
                 <div className="clean-stats-row">
                   <div className="clean-stat-item">
@@ -252,7 +252,7 @@ export default function DashboardPage() {
                 </div>
               </div>
 
-              {/* Today's Tip - Minimal */}
+              {/* Today's Tip  */}
               <div className="clean-tip-card">
                 <div className="tip-header">
                   <span className="tip-icon">💡</span>

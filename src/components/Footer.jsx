@@ -3,8 +3,9 @@ import React from "react";
 /**
  * Footer component displays the site footer.
  * @returns {JSX.Element} The rendered footer.
- * @precondition Should be used at the bottom of a page layout.
- */
+ *
+ *Privacy page is currently non existent. It will require a new page to be made once a privacy policy is in place.
+*/
 export default function Footer() {
   return (
     <footer className="w-full bg-[#012a4a] text-center text-sm text-gray-300 py-4 mobile-footer">
@@ -13,8 +14,9 @@ export default function Footer() {
           © 2025 SaaSka Software, Inc. All rights reserved.
         </span>
         <span className="mobile-footer-divider"> | </span>
+
         <a href="#" className="hover:underline ml-4 mobile-footer-link">
-          Privacy
+          Privacy 
         </a>
       </div>
       <style jsx>{`

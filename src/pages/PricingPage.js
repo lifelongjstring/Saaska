@@ -4,6 +4,9 @@ import "../styles/resume.css";
 import "../styles/pricing.css";
 import "../App.css";
 
+// PricingPage component displays different subscription plans for users to choose from.
+// These are all examples and can be customized based on actual offerings.
+
 export default function PricingPage() {
   const pricingPlans = [
     {

@@ -1,6 +1,35 @@
-import React from "react";
+import React, { useState } from "react";
 
-export default function WorkExperienceForm({ form, handleChange }) {
+export default function WorkExperienceForm() {
+  const [form, setForm] = useState({
+    jobTitle: "",
+    company: "",
+    workDesc: "",
+  });
+
+  const handleChange = (e) => {
+    setForm({
+      ...form,
+      [e.target.name]: e.target.value,
+    });
+  };
+// There is currently no backend to handle this data, so this is just a placeholder function.
+  const handleSubmit = async () => {
+    try {
+      const res = await fetch("/api/work-experience", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(form),
+      });
+      const data = await res.json();
+      console.log("Backend response:", data);
+      alert("Work experience saved!");
+    } catch (err) {
+      console.error("Error saving work experience:", err);
+      alert("There was an error saving your work experience.");
+    }
+  };
+
   return (
     <div
       style={{
@@ -24,7 +53,8 @@ export default function WorkExperienceForm({ form, handleChange }) {
             marginBottom: 24,
           }}
         >
-          List your most recent job title and company. This helps recruiters understand your experience at a glance.
+          List your most recent job title and company. This helps recruiters
+          understand your experience at a glance.
         </div>
 
         <div
@@ -70,6 +100,23 @@ export default function WorkExperienceForm({ form, handleChange }) {
           onChange={handleChange}
           style={{ ...inputStyle, minHeight: 100, resize: "vertical" }}
         />
+
+        <button
+          onClick={handleSubmit}
+          style={{
+            marginTop: 20,
+            padding: "10px 16px",
+            borderRadius: 8,
+            border: "none",
+            background: "#46c4e0",
+            color: "#fff",
+            fontSize: 16,
+            fontWeight: 600,
+            cursor: "pointer",
+          }}
+        >
+          Save Work Experience
+        </button>
       </section>
     </div>
   );

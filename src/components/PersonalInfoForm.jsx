@@ -17,6 +17,16 @@ const photoIcon = (
   </svg>
 );
 
+
+/**
+ * PersonalInfoForm component renders a form for collecting personal details.
+ * @param {Object} props - Component props
+ * @param {Object} props.form - The form state object containing personal details.
+ * @param {Function} props.handleChange - Function to handle input changes.
+ * @return {JSX.Element} The rendered personal information form.
+ * @precondition Should be used within a form handling context.
+ */
+
 export default function PersonalInfoForm({ form, handleChange }) {
   return (
     <div

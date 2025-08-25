@@ -16,6 +16,15 @@ import MobileDrawer from "../components/MobileDrawer";
  * @returns {JSX.Element} The rendered cover letter maker page.
  * @precondition Should be used within a React Router context.
  */
+/**
+ * CoverLetterMakerPage component for creating and managing cover letters.
+ * 
+ * @component
+ * @returns {JSX.Element} The Cover Letter Maker Page UI.
+ * @precondition The application must be running in a React environment.
+ *               The `useUserActivity` hook must be available and provide
+ *               `trackPageVisit` and `trackCoverLetterGenerated` functions.
+ */
 export default function CoverLetterMakerPage() {
   // Mobile drawer state
   const [drawerOpen, setDrawerOpen] = useState(false);
@@ -82,7 +91,6 @@ export default function CoverLetterMakerPage() {
     alert("PDF download coming soon!");
   };
 
-  // Now define steps after all functions are declared
   const steps = [
     {
       key: "personal",
@@ -181,7 +189,6 @@ export default function CoverLetterMakerPage() {
         <Sidebar />
       )}
       <main className="cover-letter-maker-content">
-        {/* Mobile: Ultra-clean streamlined experience */}
         {isMobile ? (
           <div className="ultra-clean-mobile-dashboard">
             {/* Greeting Section */}
@@ -247,7 +254,6 @@ export default function CoverLetterMakerPage() {
               </div>
             </div>
 
-            {/* Current Step Form - Mobile Optimized */}
             <div
               style={{
                 background: "rgba(255, 255, 255, 0.95)",

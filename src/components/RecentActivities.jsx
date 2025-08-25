@@ -22,6 +22,8 @@ const RecentActivities = () => {
     }
   };
 
+  // Generate descriptive text based on activity type and data
+
   const getActivityText = (activity) => {
     switch (activity.type) {
       case 'resume_created':
@@ -39,6 +41,7 @@ const RecentActivities = () => {
     }
   };
 
+  // Format timestamp to "time ago" style
   const formatTimeAgo = (timestamp) => {
     const now = new Date();
     const activityTime = new Date(timestamp);
@@ -59,6 +62,7 @@ const RecentActivities = () => {
     );
   }
 
+  // Display up to 3 recent activities
   return (
     <div className="recent-activities">
       {activities.slice(0, 3).map((activity, idx) => (

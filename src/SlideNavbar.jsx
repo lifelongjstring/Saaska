@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './styles.css'; // make sure this path is correct based on your file structure
+import './styles.css';
 
 const SlideNavbar = () => {
   const [isChecked, setIsChecked] = useState(false);
